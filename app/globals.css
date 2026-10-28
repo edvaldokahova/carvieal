@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { background: #FBF8F3; -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body { @apply bg-marfim-claro text-tinta font-sans antialiased; font-weight: 400; }
+::selection { background: #C9B198; color: #2B1810; }
+
+@layer components {
+  .caixa { @apply mx-auto w-full max-w-[1320px] px-5 sm:px-8 lg:px-12; }
+  .titulo { @apply font-display font-normal leading-[1.05] tracking-[-0.01em] text-choco; }
+  .btn-choco { @apply inline-flex min-h-[50px] items-center justify-center gap-2 px-7 text-[15px] font-medium tracking-[.02em] transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-40 bg-choco text-marfim-claro hover:bg-choco-deep; }
+  .btn-linha { @apply inline-flex min-h-[50px] items-center justify-center gap-2 px-7 text-[15px] font-medium tracking-[.02em] transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-40 border border-choco/40 text-choco hover:border-choco hover:bg-choco hover:text-marfim-claro; }
+  .btn-wa { @apply inline-flex min-h-[50px] items-center justify-center gap-2 px-7 text-[15px] font-medium tracking-[.02em] transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-40 bg-[#1FA855] text-white hover:bg-[#178a45]; }
+  .link { @apply underline decoration-choco/30 underline-offset-[5px] transition-colors hover:decoration-choco; }
+  .campo { @apply w-full border border-choco/20 bg-white px-4 py-3.5 text-[15px] text-tinta outline-none transition-colors placeholder:text-tinta/35 focus:border-choco; }
+  .rotulo { @apply mb-1.5 block text-[13px] text-tinta/70; }
+}
+
+:focus-visible { outline: 2px solid #4F2C1D; outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+}
