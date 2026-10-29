@@ -6,6 +6,7 @@ import { listarClientes, listarEncomendas, type Cliente, type EncomendaAdm } fro
 import { dataHora, kz, waLink } from "@/lib/formato";
 import { Titulo, Vazio, caixaAdm } from "@/components/admin/ui";
 import WaIcone from "@/components/WaIcone";
+import ListaEmailsAdm from "@/components/admin/ListaEmailsAdm";
 
 export default function Clientes() {
   const [clientes, setClientes] = useState<Cliente[] | null>(null);
@@ -70,6 +71,7 @@ export default function Clientes() {
           })}
         </div>
       )}
+      <ListaEmailsAdm />
     </div>
   );
 }

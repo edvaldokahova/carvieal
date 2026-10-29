@@ -2,7 +2,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { LayoutDashboard, LogOut, Package, Settings, ShoppingBag, Tags, Users, UserCog, ExternalLink } from "lucide-react";
+import { LayoutDashboard, LogOut, Package, Settings, ShoppingBag, Star, Tags, Users, UserCog, ExternalLink } from "lucide-react";
 import { supabase, supabaseConfigurado } from "@/lib/supabase";
 import { meuAcesso, type Acesso } from "@/lib/admin";
 import Logo from "@/components/Logo";
@@ -16,6 +16,7 @@ const LINKS = [
   { href: "/admin/encomendas", nome: "Encomendas", icon: ShoppingBag, perm: "encomendas" },
   { href: "/admin/produtos", nome: "Produtos", icon: Package, perm: "produtos" },
   { href: "/admin/categorias", nome: "Categorias", icon: Tags, perm: "produtos" },
+  { href: "/admin/avaliacoes", nome: "Avaliações", icon: Star, perm: "produtos" },
   { href: "/admin/clientes", nome: "Clientes", icon: Users, perm: "clientes" },
   { href: "/admin/equipa", nome: "Equipa", icon: UserCog, perm: "gerente" },
   { href: "/admin/definicoes", nome: "Definições", icon: Settings, perm: "gerente" },

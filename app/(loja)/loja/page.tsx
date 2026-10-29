@@ -5,18 +5,22 @@ import CartaoProduto from "@/components/CartaoProduto";
 
 export const revalidate = 60;
 
-type Props = { searchParams: { categoria?: string; ordem?: string } };
+type Props = { searchParams: { categoria?: string; ordem?: string; q?: string; novidades?: string; destaque?: string } };
 
 export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
   const cats = await listarCategorias();
   const k = cats.find((c) => c.slug === searchParams.categoria);
+  if (searchParams.novidades) return { title: "Novidades", description: "As peças mais recentes da Carvieal, em prata 925." };
+  if (searchParams.destaque) return { title: "Mais vendidos", description: "As joias Carvieal preferidas das nossas clientes." };
   return { title: k ? `${k.nome} em prata 925` : "Loja", description: k?.descricao || "Todas as joias Carvieal em prata 925." };
 }
 
 export default async function Loja({ searchParams }: Props) {
   const categorias = await listarCategorias();
   const atual = categorias.find((c) => c.slug === searchParams.categoria);
-  let produtos = await listarProdutos({ categoriaId: atual?.id });
+  const busca = (searchParams.q || "").slice(0, 60);
+  let produtos = await listarProdutos({ categoriaId: atual?.id, busca: busca || undefined, novidade: !!searchParams.novidades, destaque: !!searchParams.destaque });
+  const titulo = busca ? `Resultados para «${busca}»` : searchParams.novidades ? "Novidades" : searchParams.destaque ? "Mais vendidos" : atual ? atual.nome : "Todas as joias";
   const ordem = searchParams.ordem;
   if (ordem === "preco-asc") produtos = [...produtos].sort((a, b) => a.preco - b.preco);
   if (ordem === "preco-desc") produtos = [...produtos].sort((a, b) => b.preco - a.preco);
@@ -34,12 +38,12 @@ export default async function Loja({ searchParams }: Props) {
 
   return (
     <div className="caixa pb-20 pt-10 sm:pb-28 sm:pt-16">
-      <h1 className="titulo text-[40px] sm:text-[60px]">{atual ? atual.nome : "Todas as joias"}</h1>
+      <h1 className="text-[20px] font-medium uppercase tracking-[.14em] text-tinta sm:text-[28px]">{titulo}</h1>
       {atual?.descricao && <p className="mt-3 max-w-xl text-[15px] text-tinta/70">{atual.descricao}</p>}
 
-      <div className="sticky top-16 z-20 -mx-5 mt-8 border-b border-choco/10 bg-marfim-claro/95 px-5 backdrop-blur sm:top-[72px] sm:mx-0 sm:px-0">
+      <div className="sticky top-16 z-20 -mx-5 mt-8 border-b border-choco/10 bg-white/95 px-5 backdrop-blur sm:top-[72px] sm:mx-0 sm:px-0">
         <div className="flex items-center justify-between gap-4">
-          <nav aria-label="Categorias" className="-mb-px flex gap-6 overflow-x-auto text-[14px] [scrollbar-width:none]">
+          <nav aria-label="Categorias" className="-mb-px flex gap-6 overflow-x-auto text-[12px] font-medium uppercase tracking-[.12em] [scrollbar-width:none]">
             {[{ slug: undefined as string | undefined, nome: "Tudo" }, ...categorias].map((k) => {
               const on = (k.slug ?? "") === (atual?.slug ?? "");
               return (
@@ -61,11 +65,11 @@ export default async function Loja({ searchParams }: Props) {
 
       {produtos.length === 0 ? (
         <div className="py-24 text-center">
-          <p className="font-display text-2xl text-choco">Ainda não há peças nesta categoria.</p>
+          <p className="font-display text-2xl text-choco">{busca ? "Não encontrámos peças com esse nome." : "Ainda não há peças aqui."}</p>
           <Link href="/loja" className="btn-linha mt-8">Ver todas as joias</Link>
         </div>
       ) : (
-        <div className="mt-6 grid grid-cols-2 gap-x-3 gap-y-10 sm:gap-x-5 lg:grid-cols-4">
+        <div className="mt-6 grid grid-cols-2 gap-x-[3px] gap-y-10 sm:gap-x-4 lg:grid-cols-4">
           {produtos.map((p, i) => <CartaoProduto key={p.id} p={p} prioridade={i < 4} />)}
         </div>
       )}

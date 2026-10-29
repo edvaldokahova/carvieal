@@ -3,6 +3,7 @@ import type { Conteudo } from "./tipos";
 
 export const conteudoPadrao: Conteudo = {
   heroImagem: "/img/hero.webp",
+  heroVideo: "/video/hero.mp4",
   heroTitulo: "Elegance you wear every single day.",
   heroTexto: "Joias em prata 925 pensadas para o dia a dia. Entregamos em casa, em Luanda.",
   instagram: "",
@@ -32,7 +33,7 @@ export async function obterConteudo(): Promise<Conteudo> {
     if (!id) return conteudoPadrao;
     const { data } = await supabase.from("store_content").select("data").eq("store_id", id).maybeSingle();
     const d = (data?.data ?? {}) as Partial<Conteudo>;
-    return { ...conteudoPadrao, ...d, entregas: Array.isArray(d.entregas) && d.entregas.length ? d.entregas : conteudoPadrao.entregas };
+    return { ...conteudoPadrao, ...d, heroVideo: d.heroVideo ?? conteudoPadrao.heroVideo, entregas: Array.isArray(d.entregas) && d.entregas.length ? d.entregas : conteudoPadrao.entregas };
   } catch {
     return conteudoPadrao;
   }

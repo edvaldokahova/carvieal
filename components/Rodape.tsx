@@ -3,6 +3,10 @@ import { marca } from "@/lib/marca";
 import { waLink } from "@/lib/formato";
 import type { Conteudo } from "@/lib/tipos";
 import Logo from "./Logo";
+import ListaEmail from "./ListaEmail";
+
+const link = "block py-2 text-[12px] uppercase tracking-[.14em] text-tinta/65 transition-colors hover:text-tinta sm:text-[13px]";
+const titulo = "mb-3 text-[13px] font-semibold uppercase tracking-[.14em] text-tinta sm:text-[14px]";
 
 export default function Rodape({ c, categorias }: { c: Conteudo; categorias: { slug: string; nome: string }[] }) {
   const redes = [
@@ -11,46 +15,47 @@ export default function Rodape({ c, categorias }: { c: Conteudo; categorias: { s
     { nome: "Facebook", href: c.facebook },
   ].filter((r) => r.href);
   return (
-    <footer className="bg-choco text-avela-light">
-      <div className="caixa grid gap-12 py-16 sm:py-20 md:grid-cols-[1.3fr_1fr_1fr_1fr]">
-        <div>
-          <Logo claro className="h-6 w-auto" />
-          <p className="mt-5 max-w-xs font-display text-[19px] leading-snug text-avela">{marca.slogan}</p>
+    <footer className="border-t border-tinta/10 bg-white text-tinta">
+      <div className="caixa py-14 sm:py-20">
+        <div className="max-w-xl">
+          <p className={titulo}>Junte-se à lista</p>
+          <p className="mb-6 text-[12px] uppercase leading-relaxed tracking-[.1em] text-tinta/65 sm:text-[13px]">
+            Inscreva-se e seja a primeira a saber das novidades, peças exclusivas e promoções.
+          </p>
+          <ListaEmail />
         </div>
-        <div>
-          <p className="mb-4 text-[13px] text-avela/70">Colecção</p>
-          <ul className="space-y-2.5 text-[14px]">
-            {categorias.map((k) => (
-              <li key={k.slug}><Link href={`/loja?categoria=${k.slug}`} className="hover:text-marfim-claro">{k.nome}</Link></li>
-            ))}
-            <li><Link href="/loja" className="hover:text-marfim-claro">Ver tudo</Link></li>
-          </ul>
-        </div>
-        <div>
-          <p className="mb-4 text-[13px] text-avela/70">Ajuda</p>
-          <ul className="space-y-2.5 text-[14px]">
-            <li><Link href="/acompanhar" className="hover:text-marfim-claro">Acompanhar encomenda</Link></li>
-            <li><Link href="/perguntas" className="hover:text-marfim-claro">Perguntas frequentes</Link></li>
-            <li><Link href="/termos" className="hover:text-marfim-claro">Termos, entregas e trocas</Link></li>
-            <li><Link href="/privacidade" className="hover:text-marfim-claro">Privacidade</Link></li>
-          </ul>
-        </div>
-        <div>
-          <p className="mb-4 text-[13px] text-avela/70">Contacto</p>
-          <ul className="space-y-2.5 text-[14px]">
-            <li><a href={waLink(marca.whatsapp, "Olá, Carvieal!")} target="_blank" rel="noopener noreferrer" className="hover:text-marfim-claro">WhatsApp {marca.whatsappVisivel}</a></li>
-            {c.email && <li><a href={`mailto:${c.email}`} className="hover:text-marfim-claro">{c.email}</a></li>}
-            {redes.map((r) => (
-              <li key={r.nome}><a href={r.href} target="_blank" rel="noopener noreferrer" className="hover:text-marfim-claro">{r.nome}</a></li>
-            ))}
-            <li className="text-avela/70">{marca.cidade}. Loja exclusivamente online.</li>
-          </ul>
+
+        <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4">
+          <nav aria-label="Apoio">
+            <p className={titulo}>Apoio</p>
+            <Link href="/acompanhar" className={link}>Acompanhar encomenda</Link>
+            <Link href="/termos" className={link}>Entregas e trocas</Link>
+            <Link href="/perguntas" className={link}>Perguntas frequentes</Link>
+            <a href={waLink(marca.whatsapp, "Olá, Carvieal!")} target="_blank" rel="noopener noreferrer" className={link}>Contacte-nos</a>
+          </nav>
+          <nav aria-label="Geral">
+            <p className={titulo}>Geral</p>
+            <Link href="/loja" className={link}>Loja</Link>
+            <Link href="/perguntas" className={link}>Cuidados com a prata</Link>
+            <Link href="/termos" className={link}>Termos e condições</Link>
+            <Link href="/privacidade" className={link}>Privacidade</Link>
+          </nav>
+          <nav aria-label="Colecção">
+            <p className={titulo}>Colecção</p>
+            {categorias.map((k) => <Link key={k.slug} href={`/loja?categoria=${k.slug}`} className={link}>{k.nome}</Link>)}
+          </nav>
+          <div>
+            <p className={titulo}>Siga-nos</p>
+            {redes.map((r) => <a key={r.nome} href={r.href} target="_blank" rel="noopener noreferrer" className={link}>{r.nome}</a>)}
+            <a href={waLink(marca.whatsapp, "Olá, Carvieal!")} target="_blank" rel="noopener noreferrer" className={link}>WhatsApp</a>
+            {c.email && <a href={`mailto:${c.email}`} className={`${link} normal-case tracking-normal`}>{c.email}</a>}
+          </div>
         </div>
       </div>
-      <div className="border-t border-avela/15">
-        <div className="caixa flex flex-col gap-2 py-6 text-[12px] text-avela/60 sm:flex-row sm:justify-between">
-          <span>© {new Date().getFullYear()} {marca.nome}. Propriedade de {marca.dona}.</span>
-          <span>Joias em prata 925.</span>
+      <div className="border-t border-tinta/10">
+        <div className="caixa flex flex-col items-center gap-3 py-8 text-center">
+          <Logo className="h-5 w-auto" />
+          <p className="text-[11px] uppercase tracking-[.14em] text-tinta/50">© {new Date().getFullYear()} {marca.nome}. Prata 925. {marca.cidade}.</p>
         </div>
       </div>
     </footer>

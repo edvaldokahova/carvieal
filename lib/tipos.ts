@@ -30,6 +30,8 @@ export interface Produto {
   ativo: boolean;
   ordem: number;
   created_at: string;
+  avaliacao_media: number;
+  avaliacao_total: number;
 }
 
 export type Estado = "pendente" | "confirmada" | "em_preparacao" | "enviada" | "entregue" | "cancelada";
@@ -55,6 +57,7 @@ export interface Entrega {
 
 export interface Conteudo {
   heroImagem: string;
+  heroVideo: string;
   heroTitulo: string;
   heroTexto: string;
   instagram: string;
@@ -76,4 +79,13 @@ export interface ItemCarrinho {
   opcoes: Record<string, string>;
   quantidade: number;
   stock: number;
+}
+
+export interface Avaliacao {
+  id: string;
+  nome: string;
+  nota: number;
+  comentario: string;
+  verificada: boolean;
+  created_at: string;
 }

@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-html { background: #FBF8F3; -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
-body { @apply bg-marfim-claro text-tinta font-sans antialiased; font-weight: 400; }
+html { background: #FFFFFF; -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body { @apply bg-white text-tinta font-sans antialiased; font-weight: 400; }
 ::selection { background: #C9B198; color: #2B1810; }
 
 @layer components {

@@ -34,11 +34,15 @@ export default function Definicoes() {
         <h2 className="text-[15px] font-medium">Página inicial</h2>
         <div><label className={lbl}>Frase no topo da loja</label><input className="campo" value={c.avisoTopo} onChange={(e) => set("avisoTopo", e.target.value)} placeholder="Ex.: Entregamos em casa, em Luanda." /></div>
         <div><label className={lbl}>Título principal</label><input className="campo" value={c.heroTitulo} onChange={(e) => set("heroTitulo", e.target.value)} /></div>
-        <div><label className={lbl}>Texto por baixo do título</label><textarea rows={2} className="campo" value={c.heroTexto} onChange={(e) => set("heroTexto", e.target.value)} /></div>
+        <div>
+          <label className={lbl}>Vídeo de fundo (link de um ficheiro .mp4)</label>
+          <input className="campo" value={c.heroVideo} onChange={(e) => set("heroVideo", e.target.value.trim())} placeholder={conteudoPadrao.heroVideo} />
+          <p className="mt-1 text-[12px] text-tinta/50">Vídeo curto (5 a 15 segundos), sem som, até 5 MB. Deixe vazio para mostrar só a foto. Para voltar ao vídeo original, escreva {conteudoPadrao.heroVideo}</p>
+        </div>
         <div>
           <label className={lbl}>Foto principal (link ImgBB)</label>
           <input className="campo" value={c.heroImagem} onChange={(e) => set("heroImagem", e.target.value)} />
-          <p className="mt-1 text-[12px] text-tinta/50">Horizontal, com espaço livre do lado esquerdo para o texto. Para voltar à foto original, escreva {conteudoPadrao.heroImagem}</p>
+          <p className="mt-1 text-[12px] text-tinta/50">Aparece enquanto o vídeo carrega. Para voltar à foto original, escreva {conteudoPadrao.heroImagem}</p>
         </div>
       </section>
 
