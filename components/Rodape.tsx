@@ -36,7 +36,8 @@ export default function Rodape({ c, categorias }: { c: Conteudo; categorias: { s
           <nav aria-label="Geral">
             <p className={titulo}>Geral</p>
             <Link href="/loja" className={link}>Loja</Link>
-            <Link href="/perguntas" className={link}>Cuidados com a prata</Link>
+            <Link href="/sobre" className={link}>Sobre nós</Link>
+            <Link href="/perguntas#cuidados" className={link}>Cuidados com a prata</Link>
             <Link href="/termos" className={link}>Termos e condições</Link>
             <Link href="/privacidade" className={link}>Privacidade</Link>
           </nav>

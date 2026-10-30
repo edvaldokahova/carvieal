@@ -85,6 +85,7 @@ export default function Cabecalho({ categorias, aviso }: { categorias: { slug: s
               ))}
             </nav>
             <div className="space-y-4 border-t border-tinta/10 px-5 py-6 text-[12px] uppercase tracking-[.14em] text-tinta/70">
+              <Link href="/sobre" onClick={() => setMenu(false)} className="block">Sobre nós</Link>
               <Link href="/acompanhar" onClick={() => setMenu(false)} className="block">Acompanhar encomenda</Link>
               <Link href="/perguntas" onClick={() => setMenu(false)} className="block">Perguntas frequentes</Link>
             </div>
