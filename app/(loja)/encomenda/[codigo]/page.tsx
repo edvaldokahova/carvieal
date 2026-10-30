@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { obterConteudo } from "@/lib/conteudo";
 import Encomenda from "@/components/Encomenda";
 
-export const metadata: Metadata = { title: "A sua encomenda", robots: { index: false } };
+export const metadata: Metadata = { title: "A tua encomenda", robots: { index: false } };
 
 export default async function PaginaEncomenda({ params, searchParams }: { params: { codigo: string }; searchParams: { t?: string; nova?: string } }) {
   const c = await obterConteudo();

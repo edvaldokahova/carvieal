@@ -16,7 +16,7 @@ export default function Comprar({ p }: { p: Produto }) {
 
   const add = () => {
     if (faltam.length) {
-      setAviso(`Escolha ${faltam.map((o) => o.nome.toLowerCase()).join(" e ")}.`);
+      setAviso(`Escolhe ${faltam.map((o) => o.nome.toLowerCase()).join(" e ")}.`);
       return;
     }
     setAviso("");

@@ -3,7 +3,7 @@ export const FAQ: { tema: string; perguntas: { p: string; r: string }[] }[] = [
   {
     tema: "Materiais",
     perguntas: [
-      { p: "De que materiais são feitas as joias?", r: "A nossa seleção inclui peças em prata 925. A composição e o acabamento de cada artigo estão indicados na respetiva descrição do produto." },
+      { p: "De que materiais são feitas as joias?", r: "A nossa seleção inclui joias em prata 925 e acessórios em aço inoxidável. A composição e o acabamento de cada artigo estão indicados na respetiva descrição do produto." },
       { p: "A prata 925 escurece?", r: "Sim. Com o tempo, a prata 925 pode escurecer naturalmente devido à exposição ao ar, à humidade e a determinadas substâncias. Este processo é normal e, geralmente, reversível com uma limpeza adequada." },
       { p: "As peças provocam alergias?", r: "A reação varia de pessoa para pessoa e depende da composição de cada peça e da sensibilidade individual. Se tens pele sensível ou alergia conhecida a determinados metais, recomendamos que consultes a descrição do artigo e nos contactes antes de realizar a encomenda." },
     ],

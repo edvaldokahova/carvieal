@@ -8,7 +8,7 @@ import AdicionarRapido from "./AdicionarRapido";
 export default function CartaoProduto({ p, prioridade = false }: { p: Produto; prioridade?: boolean }) {
   const esgotado = p.stock <= 0;
   const desconto = p.preco_antigo && p.preco_antigo > p.preco ? Math.round((1 - p.preco / p.preco_antigo) * 100) : 0;
-  const etiqueta = esgotado ? "Esgotado" : desconto ? `Poupe ${desconto}%` : p.novidade ? "Novo" : "";
+  const etiqueta = esgotado ? "Esgotado" : desconto ? `Poupa ${desconto}%` : p.novidade ? "Novo" : "";
   return (
     <div className="group">
       <div className="relative aspect-[4/5] overflow-hidden bg-[#F1EEEA]">

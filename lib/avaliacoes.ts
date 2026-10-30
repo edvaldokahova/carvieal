@@ -14,14 +14,14 @@ export async function avaliacoesPublicas(produtoId: string): Promise<Avaliacao[]
 
 export async function avaliar(a: { produtoId: string; nome: string; telefone: string; nota: number; comentario: string }): Promise<{ publicada?: boolean; erro?: string }> {
   const { data, error } = await supabase.rpc("carvieal_avaliar", { p_produto: a.produtoId, p_nome: a.nome, p_telefone: a.telefone, p_nota: a.nota, p_comentario: a.comentario });
-  if (error) return { erro: error.message || "Não foi possível enviar. Tente de novo." };
+  if (error) return { erro: error.message || "Não foi possível enviar. Tenta de novo." };
   return { publicada: Boolean((data as { publicada?: boolean })?.publicada) };
 }
 
 export async function entrarLista(email: string): Promise<string | null> {
   if (!supabaseConfigurado) return "A loja ainda não está ligada à base de dados.";
   const { error } = await supabase.rpc("carvieal_entrar_lista", { p_email: email });
-  return error ? (error.message.includes("inválido") ? "Verifique o email." : "Não foi possível guardar. Tente de novo.") : null;
+  return error ? (error.message.includes("inválido") ? "Verifica o email." : "Não foi possível guardar. Tenta de novo.") : null;
 }
 
 // Painel ------------------------------------------------------------------

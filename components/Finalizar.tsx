@@ -33,11 +33,11 @@ export default function Finalizar({ entregas }: { entregas: Entrega[] }) {
 
   const validar = () => {
     const e: Record<string, string> = {};
-    if (f.nome.trim().length < 2) e.nome = "Indique o seu nome.";
-    if (soDigitos(f.telefone).length < 9) e.telefone = "Indique um número com 9 dígitos.";
-    if (f.localizacao.trim().length < 2) e.localizacao = "Indique o município ou bairro.";
-    if (f.endereco.trim().length < 4) e.endereco = "Indique a rua, o número ou o condomínio.";
-    if (entregas.length && !ent) e.modalidade = "Escolha a forma de entrega.";
+    if (f.nome.trim().length < 2) e.nome = "Indica o teu nome.";
+    if (soDigitos(f.telefone).length < 9) e.telefone = "Indica um número com 9 dígitos.";
+    if (f.localizacao.trim().length < 2) e.localizacao = "Indica o município ou bairro.";
+    if (f.endereco.trim().length < 4) e.endereco = "Indica a rua, o número ou o condomínio.";
+    if (entregas.length && !ent) e.modalidade = "Escolhe a forma de entrega.";
     setErros(e);
     if (Object.keys(e).length) {
       document.getElementById(`campo-${Object.keys(e)[0]}`)?.focus();
@@ -71,8 +71,8 @@ export default function Finalizar({ entregas }: { entregas: Entrega[] }) {
   if (montado && itens.length === 0 && !aEnviar) {
     return (
       <div className="caixa py-28 text-center">
-        <h1 className="titulo text-[36px]">O seu carrinho está vazio.</h1>
-        <Link href="/loja" className="btn-choco mt-8">Ver a colecção</Link>
+        <h1 className="titulo text-[36px]">O teu carrinho está vazio.</h1>
+        <Link href="/loja" className="btn-choco mt-8">Ver a coleção</Link>
       </div>
     );
   }
@@ -92,7 +92,7 @@ export default function Finalizar({ entregas }: { entregas: Entrega[] }) {
       <div className="mt-10 grid gap-12 lg:grid-cols-[1.3fr_1fr] lg:gap-20">
         <form onSubmit={(e) => { e.preventDefault(); if (validar()) setEscolha(true); }} noValidate className="space-y-12">
           <section className="space-y-5">
-            <h2 className="font-display text-[24px] text-choco">Os seus dados</h2>
+            <h2 className="font-display text-[24px] text-choco">Os teus dados</h2>
             {campo("nome", "Nome completo", <input id="campo-nome" className="campo" value={f.nome} onChange={(e) => set("nome", e.target.value)} autoComplete="name" maxLength={80} />)}
             <div className="grid gap-5 sm:grid-cols-2">
               {campo("telefone", "Telefone (WhatsApp)", <input id="campo-telefone" className="campo" value={f.telefone} onChange={(e) => set("telefone", e.target.value)} inputMode="tel" autoComplete="tel" placeholder="9XX XXX XXX" maxLength={20} />)}
@@ -140,7 +140,7 @@ export default function Finalizar({ entregas }: { entregas: Entrega[] }) {
           <button type="button" aria-label="Fechar" onClick={() => !aEnviar && setEscolha(false)} className="absolute inset-0 animate-fade bg-tinta/45" />
           <div className="relative w-full max-w-lg animate-sobe bg-marfim-claro p-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] sm:p-8">
             <button type="button" onClick={() => !aEnviar && setEscolha(false)} aria-label="Fechar" className="absolute right-3 top-3 grid h-11 w-11 place-items-center text-choco"><X size={20} strokeWidth={1.5} /></button>
-            <h2 id="titulo-pagamento" className="font-display text-[28px] text-choco">Como prefere pagar?</h2>
+            <h2 id="titulo-pagamento" className="font-display text-[28px] text-choco">Como preferes pagar?</h2>
             <p className="mt-1 text-[14px] text-tinta/65">Total a pagar: <b className="font-medium text-tinta">{kz(subtotal + taxa)}</b></p>
 
             <div className="mt-6 space-y-3">

@@ -39,8 +39,8 @@ export type Estado = "pendente" | "confirmada" | "em_preparacao" | "enviada" | "
 export const ESTADOS: { id: Estado; nome: string; descricao: string }[] = [
   { id: "pendente", nome: "Pendente", descricao: "Recebemos a encomenda e aguardamos a confirmação do pagamento." },
   { id: "confirmada", nome: "Confirmada", descricao: "Pagamento verificado e artigos reservados." },
-  { id: "em_preparacao", nome: "Em preparação", descricao: "A sua encomenda está a ser embalada." },
-  { id: "enviada", nome: "Enviada", descricao: "O motoboy está a caminho da sua morada." },
+  { id: "em_preparacao", nome: "Em preparação", descricao: "A tua encomenda está a ser embalada." },
+  { id: "enviada", nome: "Enviada", descricao: "O motoboy está a caminho da tua morada." },
   { id: "entregue", nome: "Entregue", descricao: "Encomenda entregue. Obrigada pela preferência." },
   { id: "cancelada", nome: "Cancelada", descricao: "Esta encomenda foi cancelada." },
 ];

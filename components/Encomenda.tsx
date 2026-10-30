@@ -37,7 +37,7 @@ export default function Encomenda({ codigo, telefone, nova, instrucoes }: { codi
       <div className="caixa max-w-md py-24">
         <h1 className="titulo text-[34px]">Encomenda {codigo.toUpperCase()}</h1>
         <p className="mt-3 text-[15px] text-tinta/70">
-          {estado === "nao-encontrada" ? "Não encontrámos esta encomenda com esse número. Confirme o telefone usado na compra." : "Para ver a encomenda, indique o telefone usado na compra."}
+          {estado === "nao-encontrada" ? "Não encontrámos esta encomenda com esse número. Confirma o telefone utilizado na compra." : "Para ver a encomenda, indica o telefone utilizado na compra."}
         </p>
         <form onSubmit={(e) => { e.preventDefault(); carregar(entrada); }} className="mt-6 space-y-3">
           <input className="campo" value={entrada} onChange={(e) => setEntrada(e.target.value)} inputMode="tel" placeholder="9XX XXX XXX" aria-label="Telefone" />
@@ -66,7 +66,7 @@ export default function Encomenda({ codigo, telefone, nova, instrucoes }: { codi
               <p className="text-[14px] text-tinta/60">Encomenda {dados.codigo}</p>
               <h1 className="titulo mt-2 text-[40px] sm:text-[56px]">Falta só enviar no WhatsApp.</h1>
               <p className="mt-5 max-w-lg text-[16px] leading-relaxed text-tinta/75">
-                A sua encomenda está registada. Toque no botão para abrir o WhatsApp da Carvieal com o resumo escrito e envie o comprovativo de pagamento na mesma conversa.
+                A tua encomenda está registada. Toca no botão para abrir o WhatsApp da Carvieal com o resumo escrito e envia o comprovativo de pagamento na mesma conversa.
               </p>
               <a href={wa} target="_blank" rel="noopener noreferrer" className="btn-wa mt-8 w-full sm:w-auto sm:px-10">
                 <WaIcone /> Enviar encomenda no WhatsApp
@@ -137,7 +137,7 @@ export default function Encomenda({ codigo, telefone, nova, instrucoes }: { codi
             </dl>
             <p className="mt-5 text-[13px] leading-relaxed text-tinta/60">Entrega em: {dados.localizacao}, {dados.endereco}</p>
           </div>
-          <p className="mt-4 text-[13px] text-tinta/55">Guarde o código <b className="font-medium text-tinta">{dados.codigo}</b>. Pode acompanhar a encomenda em <Link href="/acompanhar" className="link">Acompanhar encomenda</Link>.</p>
+          <p className="mt-4 text-[13px] text-tinta/55">Guarda o código <b className="font-medium text-tinta">{dados.codigo}</b>. Podes acompanhar a encomenda em <Link href="/acompanhar" className="link">Acompanhar encomenda</Link>.</p>
         </aside>
       </div>
     </div>

@@ -20,7 +20,7 @@ export default function Rodape({ c, categorias }: { c: Conteudo; categorias: { s
         <div className="max-w-xl">
           <p className={titulo}>Junte-se à lista</p>
           <p className="mb-6 text-[12px] uppercase leading-relaxed tracking-[.1em] text-tinta/65 sm:text-[13px]">
-            Inscreva-se e seja a primeira a saber das novidades, peças exclusivas e promoções.
+            Inscreve-te e sê a primeira a saber das novidades, peças exclusivas e promoções.
           </p>
           <ListaEmail />
         </div>
@@ -31,7 +31,7 @@ export default function Rodape({ c, categorias }: { c: Conteudo; categorias: { s
             <Link href="/acompanhar" className={link}>Acompanhar encomenda</Link>
             <Link href="/termos" className={link}>Entregas e trocas</Link>
             <Link href="/perguntas" className={link}>Perguntas frequentes</Link>
-            <a href={waLink(marca.whatsapp, "Olá, Carvieal!")} target="_blank" rel="noopener noreferrer" className={link}>Contacte-nos</a>
+            <a href={waLink(marca.whatsapp, "Olá, Carvieal!")} target="_blank" rel="noopener noreferrer" className={link}>Contacta-nos</a>
           </nav>
           <nav aria-label="Geral">
             <p className={titulo}>Geral</p>
@@ -46,7 +46,7 @@ export default function Rodape({ c, categorias }: { c: Conteudo; categorias: { s
             {categorias.map((k) => <Link key={k.slug} href={`/loja?categoria=${k.slug}`} className={link}>{k.nome}</Link>)}
           </nav>
           <div>
-            <p className={titulo}>Siga-nos</p>
+            <p className={titulo}>Segue-nos</p>
             {redes.map((r) => <a key={r.nome} href={r.href} target="_blank" rel="noopener noreferrer" className={link}>{r.nome}</a>)}
             <a href={waLink(marca.whatsapp, "Olá, Carvieal!")} target="_blank" rel="noopener noreferrer" className={link}>WhatsApp</a>
             {c.email && <a href={`mailto:${c.email}`} className={`${link} normal-case tracking-normal`}>{c.email}</a>}

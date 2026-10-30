@@ -7,8 +7,8 @@ export default function NaoEncontrado() {
       <div>
         <Logo className="mx-auto h-6 w-auto" />
         <h1 className="titulo mt-12 text-[40px]">Esta página não existe.</h1>
-        <p className="mt-3 text-tinta/65">Pode ter sido removida ou o link está incompleto.</p>
-        <Link href="/loja" className="btn-choco mt-8">Ver a colecção</Link>
+        <p className="mt-3 text-tinta/65">Poderá ter sido removida ou o link está incompleto.</p>
+        <Link href="/loja" className="btn-choco mt-8">Ver a coleção</Link>
       </div>
     </main>
   );

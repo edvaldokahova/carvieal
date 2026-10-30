@@ -26,16 +26,16 @@ export default function Avaliacoes({ produtoId, media, total, iniciais }: { prod
   const enviar = async (e: React.FormEvent) => {
     e.preventDefault();
     setErro("");
-    if (!nota) return setErro("Escolha de 1 a 5 estrelas.");
+    if (!nota) return setErro("Escolhe de 1 a 5 estrelas.");
     setAEnviar(true);
     const r = await avaliar({ produtoId, nome, telefone: tel, nota, comentario });
     setAEnviar(false);
     if (r.erro) return setErro(r.erro);
     if (r.publicada) {
       setLista((l) => [{ id: "nova", nome: nome.trim(), nota, comentario: comentario.trim(), verificada: true, created_at: new Date().toISOString() }, ...l]);
-      setMsg("Obrigada! A sua avaliação já está publicada.");
+      setMsg("Obrigada! A tua avaliação já está publicada.");
     } else {
-      setMsg("Obrigada! A sua avaliação foi recebida e aparece aqui depois de ser revista pela nossa equipa.");
+      setMsg("Obrigada! A tua avaliação foi recebida e aparece aqui depois de ser revista pela nossa equipa.");
     }
     setAberto(false);
     setNota(0); setNome(""); setTel(""); setComentario("");
@@ -61,7 +61,7 @@ export default function Avaliacoes({ produtoId, media, total, iniciais }: { prod
               </ul>
             </>
           ) : (
-            <p className="mt-4 text-[14px] text-tinta/65">Ainda sem avaliações. Seja a primeira a dizer o que achou desta peça.</p>
+            <p className="mt-4 text-[14px] text-tinta/65">Ainda sem avaliações. Sê a primeira a dizer o que achaste desta peça.</p>
           )}
           {!aberto && <button onClick={() => { setAberto(true); setMsg(""); }} className="mt-7 h-12 w-full border border-tinta text-[12px] font-medium uppercase tracking-[.16em] transition-colors hover:bg-tinta hover:text-white">Escrever avaliação</button>}
           {msg && <p role="status" className="mt-4 text-[14px] text-choco">{msg}</p>}
@@ -71,7 +71,7 @@ export default function Avaliacoes({ produtoId, media, total, iniciais }: { prod
           {aberto && (
             <form onSubmit={enviar} className="mb-10 space-y-4 bg-[#F6F3EF] p-5 sm:p-7">
               <fieldset>
-                <legend className="rotulo">A sua nota</legend>
+                <legend className="rotulo">A tua nota</legend>
                 <div className="flex gap-1" onMouseLeave={() => setHover(0)}>
                   {[1, 2, 3, 4, 5].map((n) => (
                     <button key={n} type="button" aria-label={`${n} ${n === 1 ? "estrela" : "estrelas"}`} aria-pressed={nota === n} onClick={() => setNota(n)} onMouseEnter={() => setHover(n)} className="grid h-11 w-11 place-items-center text-tinta">
@@ -88,7 +88,7 @@ export default function Avaliacoes({ produtoId, media, total, iniciais }: { prod
                 </div>
               </div>
               <div><label htmlFor="av-com" className="rotulo">Comentário (opcional)</label><textarea id="av-com" rows={4} maxLength={1000} className="campo resize-none" value={comentario} onChange={(e) => setComentario(e.target.value)} placeholder="Como é a peça ao vivo? Usa-a no dia a dia?" /></div>
-              <p className="text-[12px] text-tinta/55">Se já recebeu esta peça, use o mesmo número da encomenda: a avaliação fica com «Compra verificada».</p>
+              <p className="text-[12px] text-tinta/55">Se já recebeste esta peça, usa o mesmo número da encomenda: a avaliação fica com «Compra verificada».</p>
               {erro && <p role="alert" className="text-[14px] text-choco">{erro}</p>}
               <div className="flex gap-3">
                 <button disabled={aEnviar} className="btn-choco flex-1 sm:flex-none">{aEnviar ? "A enviar…" : "Publicar avaliação"}</button>

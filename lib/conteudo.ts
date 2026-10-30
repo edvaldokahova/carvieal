@@ -16,7 +16,7 @@ export const conteudoPadrao: Conteudo = {
     { nome: "Outras províncias", descricao: "Por transportadora. A taxa é combinada no WhatsApp", taxa: 0 },
   ],
   instrucoesPagamento:
-    "Envie o comprovativo de pagamento pelo WhatsApp. Os dados para transferência ou Multicaixa Express são enviados na conversa.",
+    "Envia o comprovativo de pagamento pelo WhatsApp. Os dados para transferência ou Multicaixa Express são enviados na conversa.",
   avisoTopo: "Entregamos em casa, em Luanda.",
 };
 
