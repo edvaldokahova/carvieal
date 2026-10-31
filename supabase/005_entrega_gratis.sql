@@ -5,7 +5,7 @@
 update store_content c
 set data = c.data
   || jsonb_build_object('entregaGratisAcima', 150000)
-  || jsonb_build_object('avisoTopo', 'Entregas grátis em compras iguais ou superiores a 150.000 Kz')
+  || jsonb_build_object('avisoTopo', 'Entrega gratuita em compras a partir de 150.000 Kz')
   || jsonb_build_object('entregas', (
        select coalesce(jsonb_agg(e.value || jsonb_build_object('gratis', e.value->>'nome' = 'Entrega em Luanda') order by e.ordinality), '[]'::jsonb)
        from jsonb_array_elements(coalesce(c.data->'entregas', '[]'::jsonb)) with ordinality as e))

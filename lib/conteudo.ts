@@ -17,7 +17,7 @@ export const conteudoPadrao: Conteudo = {
   ],
   instrucoesPagamento:
     "Envia o comprovativo de pagamento pelo WhatsApp. Os dados para transferência ou Multicaixa Express são enviados na conversa.",
-  avisoTopo: "Entregas grátis em compras iguais ou superiores a 150.000 Kz",
+  avisoTopo: "Entrega gratuita em compras a partir de 150.000 Kz",
   entregaGratisAcima: 150000,
 };
 
