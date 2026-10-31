@@ -4,7 +4,6 @@ import { listarCategorias, listarProdutos } from "@/lib/loja";
 import CartaoProduto from "@/components/CartaoProduto";
 import Foto from "@/components/Foto";
 import HeroVideo from "@/components/HeroVideo";
-import Carrossel from "@/components/Carrossel";
 
 export const revalidate = 60;
 
@@ -19,7 +18,6 @@ export default async function Inicio() {
     listarProdutos({ limite: 24 }),
   ]);
   const maisVendidos = destaques.length ? destaques : todos.slice(0, 8);
-  const looks = todos.filter((p) => p.imagens.length).slice(0, 8);
   // «Carvieal no dia a dia»: fotos das peças + fotos de ambiente, no mínimo 5, a deslizar
   const ambiente = ["/img/sobre-3.webp", "/img/sobre-2.webp", "/img/sobre-4.webp", "/img/sobre-1.webp", "/img/hero.webp"];
   const dasPecas = [...new Set(todos.flatMap((p) => p.imagens))].slice(0, 8).map((src) => {
@@ -80,12 +78,23 @@ export default async function Inicio() {
         </section>
       )}
 
-      {/* Looks: carrossel editorial */}
-      {looks.length > 1 && (
-        <section className="pb-12 sm:pb-20">
-          <Carrossel itens={looks.map((p) => ({ href: `/produto/${p.slug}`, img: p.imagens[1] || p.imagens[0], nome: p.nome }))} />
-        </section>
-      )}
+      {/* Secção institucional: a qualidade */}
+      <section className="pb-12 sm:pb-20">
+        <div className="grid bg-marfim md:grid-cols-2">
+          <div className="relative aspect-[4/3] md:order-2 md:aspect-auto md:min-h-[460px]">
+            <Foto src="/img/qualidade.webp" alt="Colar, brincos e anel em prata 925 Carvieal" sizes="(min-width: 768px) 50vw, 100vw" />
+          </div>
+          <div className="flex flex-col justify-center px-5 py-12 sm:px-12 sm:py-16 lg:px-20">
+            <p className="text-[12px] font-medium uppercase tracking-[.2em] text-tinta/60">Prata 925</p>
+            <h2 className="titulo mt-4 text-[34px] sm:text-[46px]">A qualidade está nos detalhes</h2>
+            <span aria-hidden className="mt-6 block h-px w-12 bg-choco/50" />
+            <p className="mt-6 max-w-md text-[15px] leading-relaxed text-tinta/75 sm:text-[16px]">
+              Selecionamos cuidadosamente joias em prata 925, escolhidas pela sua beleza, qualidade e versatilidade, para acompanhar o teu estilo em todos os momentos.
+            </p>
+            <Link href="/sobre" className="btn-choco mt-8 self-start uppercase tracking-[.14em] text-[13px]">Conhece a Carvieal</Link>
+          </div>
+        </div>
+      </section>
 
       {/* Galeria estilo Instagram */}
       {galeria.length >= 5 && (
