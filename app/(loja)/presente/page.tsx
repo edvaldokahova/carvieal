@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export default async function Presente() {
   const { anel, joias } = await obterEstojos();
   const modelos = [
-    { e: anel, titulo: "Estojo para anel", texto: "Com encaixe acolchoado para um anel.", img: "/img/estojo-anel.webp" },
+    { e: anel, titulo: "Estojo para anel", texto: "Mini estojo em tom taupe, para um anel ou um par de brincos pequenos.", img: "/img/estojo-anel.webp" },
     { e: joias, titulo: "Estojo para brincos, colares e pulseiras", texto: "Serve para brincos, colares e pulseiras.", img: "/img/estojo-joias.webp" },
   ];
   return (
