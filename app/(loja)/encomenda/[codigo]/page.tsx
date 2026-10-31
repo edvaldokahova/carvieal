@@ -6,5 +6,5 @@ export const metadata: Metadata = { title: "A tua encomenda", robots: { index: f
 
 export default async function PaginaEncomenda({ params, searchParams }: { params: { codigo: string }; searchParams: { t?: string; nova?: string } }) {
   const c = await obterConteudo();
-  return <Encomenda codigo={params.codigo} telefone={searchParams.t ?? ""} nova={searchParams.nova === "1"} instrucoes={c.instrucoesPagamento} />;
+  return <Encomenda codigo={params.codigo} telefone={searchParams.t ?? ""} nova={searchParams.nova === "1"} instrucoes={c.instrucoesPagamento} gratisAcima={c.entregaGratisAcima} />;
 }

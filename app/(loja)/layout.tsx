@@ -14,7 +14,7 @@ export default async function LojaLayout({ children }: { children: React.ReactNo
       <Cabecalho categorias={cats} aviso={c.avisoTopo} />
       <main id="conteudo">{children}</main>
       <Rodape c={c} categorias={cats} />
-      <CarrinhoGaveta />
+      <CarrinhoGaveta gratisAcima={c.entregaGratisAcima} />
     </>
   );
 }

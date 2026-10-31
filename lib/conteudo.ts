@@ -17,7 +17,8 @@ export const conteudoPadrao: Conteudo = {
   ],
   instrucoesPagamento:
     "Envia o comprovativo de pagamento pelo WhatsApp. Os dados para transferência ou Multicaixa Express são enviados na conversa.",
-  avisoTopo: "Entregamos em casa, em Luanda.",
+  avisoTopo: "Entregas grátis em compras iguais ou superiores a 150.000 Kz",
+  entregaGratisAcima: 150000,
 };
 
 export async function obterStoreId(): Promise<string | null> {
@@ -33,7 +34,7 @@ export async function obterConteudo(): Promise<Conteudo> {
     if (!id) return conteudoPadrao;
     const { data } = await supabase.from("store_content").select("data").eq("store_id", id).maybeSingle();
     const d = (data?.data ?? {}) as Partial<Conteudo>;
-    return { ...conteudoPadrao, ...d, heroVideo: d.heroVideo ?? conteudoPadrao.heroVideo, entregas: Array.isArray(d.entregas) && d.entregas.length ? d.entregas : conteudoPadrao.entregas };
+    return { ...conteudoPadrao, ...d, heroVideo: d.heroVideo ?? conteudoPadrao.heroVideo, entregaGratisAcima: Number(d.entregaGratisAcima ?? conteudoPadrao.entregaGratisAcima) || 0, entregas: Array.isArray(d.entregas) && d.entregas.length ? d.entregas : conteudoPadrao.entregas };
   } catch {
     return conteudoPadrao;
   }

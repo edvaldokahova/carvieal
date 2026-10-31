@@ -7,5 +7,5 @@ export const revalidate = 60;
 
 export default async function PaginaFinalizar() {
   const c = await obterConteudo();
-  return <Finalizar entregas={c.entregas} />;
+  return <Finalizar entregas={c.entregas} gratisAcima={c.entregaGratisAcima} />;
 }

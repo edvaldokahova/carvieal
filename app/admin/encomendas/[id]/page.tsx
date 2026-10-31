@@ -118,7 +118,7 @@ export default function DetalheEncomenda({ params }: { params: { id: string } })
             </ul>
             <dl className="space-y-1.5 border-t border-choco/10 px-5 py-4 text-[14px]">
               <div className="flex justify-between"><dt className="text-tinta/60">Subtotal</dt><dd className="tabular-nums">{kz(e.subtotal)}</dd></div>
-              <div className="flex justify-between"><dt className="text-tinta/60">{e.modalidade || "Entrega"}</dt><dd className="tabular-nums">{e.taxa_entrega > 0 ? kz(e.taxa_entrega) : "A combinar"}</dd></div>
+              <div className="flex justify-between"><dt className="text-tinta/60">{e.modalidade || "Entrega"}</dt><dd className="tabular-nums">{e.taxa_entrega > 0 ? kz(e.taxa_entrega) : "Sem taxa (grátis ou a combinar)"}</dd></div>
               <div className="flex justify-between pt-1 text-[16px]"><dt>Total</dt><dd className="font-medium tabular-nums">{kz(e.total)}</dd></div>
               <div className="flex justify-between text-[13px] text-tinta/60"><dt>Pagamento</dt><dd>{e.metodo_pagamento === "whatsapp" ? "Comprovativo por WhatsApp" : e.metodo_pagamento === "referencia" ? "Referência" : "Multicaixa Express"}{e.pago ? ", confirmado" : ", por confirmar"}</dd></div>
             </dl>

@@ -67,6 +67,8 @@ export interface Conteudo {
   entregas: Entrega[];
   instrucoesPagamento: string;
   avisoTopo: string;
+  /** Entrega grátis quando o subtotal é igual ou superior a este valor (Kz). 0 = desligado. */
+  entregaGratisAcima: number;
 }
 
 export interface ItemCarrinho {

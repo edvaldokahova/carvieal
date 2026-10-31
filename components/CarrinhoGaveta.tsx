@@ -5,7 +5,7 @@ import { useCarrinho } from "@/lib/carrinho";
 import { kz } from "@/lib/formato";
 import Foto from "./Foto";
 
-export default function CarrinhoGaveta() {
+export default function CarrinhoGaveta({ gratisAcima = 0 }: { gratisAcima?: number }) {
   const { itens, aberto, fechar, mudarQtd, remover, subtotal } = useCarrinho();
   if (!aberto) return null;
 
@@ -57,7 +57,11 @@ export default function CarrinhoGaveta() {
                 <span className="text-[15px]">Subtotal</span>
                 <span className="font-display text-2xl text-choco">{kz(subtotal)}</span>
               </div>
-              <p className="mt-1 text-[13px] text-tinta/55">A entrega é calculada no passo seguinte.</p>
+              <p className="mt-1 text-[13px] text-tinta/55">
+                {gratisAcima > 0 && subtotal >= gratisAcima ? <span className="text-choco">A tua encomenda tem entrega grátis.</span>
+                  : gratisAcima > 0 ? <>Faltam {kz(gratisAcima - subtotal)} para teres entrega grátis.</>
+                  : "A entrega é calculada no passo seguinte."}
+              </p>
               <Link href="/finalizar" onClick={fechar} className="btn-choco mt-5 w-full">Finalizar encomenda</Link>
               <button type="button" onClick={fechar} className="mt-3 w-full py-2 text-[14px] text-tinta/70 hover:text-choco">Continuar a ver</button>
             </div>

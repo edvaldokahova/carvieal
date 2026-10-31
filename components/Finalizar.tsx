@@ -11,7 +11,7 @@ import type { Entrega } from "@/lib/tipos";
 import Foto from "./Foto";
 import WaIcone from "./WaIcone";
 
-export default function Finalizar({ entregas }: { entregas: Entrega[] }) {
+export default function Finalizar({ entregas, gratisAcima = 0 }: { entregas: Entrega[]; gratisAcima?: number }) {
   const { itens, subtotal, limpar } = useCarrinho();
   const router = useRouter();
   const [f, setF] = useState({ nome: "", telefone: "", email: "", localizacao: "", endereco: "", referencia: "", modalidade: entregas[0]?.nome ?? "", notas: "" });
@@ -28,7 +28,8 @@ export default function Finalizar({ entregas }: { entregas: Entrega[] }) {
   }, []);
 
   const ent = entregas.find((e) => e.nome === f.modalidade);
-  const taxa = ent?.taxa ?? 0;
+  const gratis = gratisAcima > 0 && subtotal >= gratisAcima;
+  const taxa = gratis ? 0 : ent?.taxa ?? 0;
   const set = (k: keyof typeof f, v: string) => { setF((x) => ({ ...x, [k]: v })); setErros((e) => ({ ...e, [k]: "" })); };
 
   const validar = () => {
@@ -116,7 +117,7 @@ export default function Finalizar({ entregas }: { entregas: Entrega[] }) {
                         <span className="block text-[15px]">{e.nome}</span>
                         <span className="block text-[13px] text-tinta/60">{e.descricao}</span>
                       </span>
-                      <span className="text-[14px] tabular-nums">{e.taxa > 0 ? kz(e.taxa) : "A combinar"}</span>
+                      <span className="text-[14px] tabular-nums">{e.taxa > 0 ? (gratis ? <><s className="mr-1.5 text-tinta/40">{kz(e.taxa)}</s>Grátis</> : kz(e.taxa)) : "A combinar"}</span>
                     </label>
                   ))}
                 </div>
@@ -191,7 +192,7 @@ export default function Finalizar({ entregas }: { entregas: Entrega[] }) {
         </ul>
         <dl className="mt-6 space-y-2 border-t border-choco/15 pt-5 text-[14px]">
           <div className="flex justify-between"><dt>Subtotal</dt><dd className="tabular-nums">{kz(subtotal)}</dd></div>
-          <div className="flex justify-between"><dt>Entrega</dt><dd className="tabular-nums">{ent ? (taxa > 0 ? kz(taxa) : "A combinar") : "—"}</dd></div>
+          <div className="flex justify-between"><dt>Entrega</dt><dd className="tabular-nums">{ent ? (taxa > 0 ? kz(taxa) : gratis && ent.taxa > 0 ? "Grátis" : "A combinar") : "—"}</dd></div>
           <div className="flex items-baseline justify-between border-t border-choco/15 pt-3"><dt className="text-[15px]">Total</dt><dd className="font-display text-[26px] text-choco">{kz(subtotal + taxa)}</dd></div>
         </dl>
       </div>

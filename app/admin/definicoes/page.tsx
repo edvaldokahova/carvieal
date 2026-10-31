@@ -49,6 +49,11 @@ export default function Definicoes() {
       <section className={`${caixaAdm} mt-6 p-5 sm:p-6`}>
         <h2 className="text-[15px] font-medium">Formas de entrega</h2>
         <p className="mt-1 text-[12px] text-tinta/50">Aparecem no passo «Finalizar encomenda». Taxa 0 aparece como «A combinar».</p>
+        <div className="mt-4 max-w-xs">
+          <label className={lbl}>Entrega grátis a partir de (Kz)</label>
+          <input className="campo" inputMode="numeric" value={c.entregaGratisAcima || ""} onChange={(e) => set("entregaGratisAcima", Number(e.target.value.replace(/\D/g, "")))} placeholder="Ex.: 150000" />
+          <p className="mt-1 text-[12px] text-tinta/50">Compras com este valor ou mais ficam sem taxa de entrega, automaticamente. Deixe vazio para desligar.</p>
+        </div>
         <div className="mt-4 space-y-3">
           {c.entregas.map((e, i) => (
             <div key={i} className="grid gap-2 sm:grid-cols-[1fr_1.4fr_110px_auto]">

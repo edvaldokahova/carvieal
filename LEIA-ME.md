@@ -7,6 +7,7 @@ Loja: catálogo, carrinho, finalização com escolha de pagamento, rastreio da e
 1. **Supabase partilhado** → SQL Editor → correr `supabase/001_carvieal.sql` (cria loja, tabelas, regras e funções).
 2. Authentication → Users → *Add user* com o email da Carla (marcar *Auto Confirm*). Depois editar o email em `supabase/002_ligar_gerente.sql` e correr.
 3. **Avaliações e lista de emails:** correr `supabase/004_avaliacoes.sql` (uma vez).
+4. **Entrega grátis automática:** correr `supabase/005_entrega_gratis.sql` (uma vez). O valor mínimo muda-se no painel, em Definições › Formas de entrega.
 4. Opcional: `supabase/003_produtos_exemplo.sql` para ver a loja com 4 peças de exemplo (apagar depois no painel).
 5. **Vercel** → *Add New → Project* → importar `carvieal` → em *Environment Variables* pôr:
    - `NEXT_PUBLIC_SUPABASE_URL` (o mesmo dos outros projectos)
