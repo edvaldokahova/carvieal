@@ -4,6 +4,7 @@ import Foto from "@/components/Foto";
 import BotaoEstojo from "@/components/BotaoEstojo";
 import { obterEstojos } from "@/lib/presente";
 import { kz } from "@/lib/formato";
+import DetalhesProduto from "@/components/DetalhesProduto";
 
 export const revalidate = 60;
 
@@ -47,6 +48,17 @@ export default async function Presente() {
               <>
                 <p className="mt-3 text-[16px] text-tinta">+ {kz(m.e.preco)}</p>
                 <BotaoEstojo estojo={m.e} />
+                {(m.e.descricao || m.e.detalhes) && (
+                  <details className="group mt-5 border-y border-choco/15 py-4">
+                    <summary className="flex cursor-pointer list-none items-center justify-between text-[14px] text-tinta">
+                      Detalhes do produto
+                      <span className="text-xl font-light text-choco transition-transform duration-300 group-open:rotate-45">+</span>
+                    </summary>
+                    <div className="mt-3 text-[14px] leading-relaxed text-tinta/70">
+                      <DetalhesProduto descricao={m.e.descricao} caracteristicas={m.e.detalhes} />
+                    </div>
+                  </details>
+                )}
               </>
             ) : (
               <p className="mt-3 text-[14px] text-tinta/55">Esgotado de momento.</p>

@@ -11,6 +11,7 @@ import Comprar from "@/components/Comprar";
 import CartaoProduto from "@/components/CartaoProduto";
 import Avaliacoes from "@/components/Avaliacoes";
 import Estrelas from "@/components/Estrelas";
+import DetalhesProduto from "@/components/DetalhesProduto";
 import { avaliacoesPublicas } from "@/lib/avaliacoes";
 
 export const revalidate = 60;
@@ -52,7 +53,7 @@ export default async function PaginaProduto({ params }: Props) {
   };
 
   const blocos: [string, React.ReactNode][] = [
-    ["Detalhes", detalhes.length ? <ul className="space-y-1">{detalhes.map((d) => <li key={d}>{d}</li>)}</ul> : "Prata 925."],
+    ["Detalhes do produto", <DetalhesProduto key="d" descricao={p.descricao} caracteristicas={detalhes.join("\n")} />],
     ["Cuidados", "Retira a peça antes do banho, da praia e do ginásio. Aplica perfume e cremes antes de a colocares e guarda-a separada, na embalagem Carvieal."],
     ["Entrega e trocas", `Entrega em casa em Luanda${entregaMin ? `, a partir de ${kz(entregaMin.taxa)}` : ""}. Trocas até 7 dias após a entrega, com a peça sem uso e na embalagem original.`],
   ];
@@ -76,7 +77,6 @@ export default async function PaginaProduto({ params }: Props) {
               {p.preco_antigo && p.preco_antigo > p.preco && <span className="mr-3 text-tinta/40 line-through">{kz(p.preco_antigo)}</span>}
               {kz(p.preco)}
             </p>
-            {p.descricao && <p className="mt-5 max-w-prose text-[15px] leading-relaxed text-tinta/75">{p.descricao}</p>}
             <Comprar p={p} estojo={estojoPara(cat?.slug, estojo)} />
             <div className="mt-10 divide-y divide-choco/15 border-y border-choco/15">
               {blocos.map(([t, conteudo], i) => (

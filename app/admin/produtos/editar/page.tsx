@@ -10,7 +10,7 @@ import { Titulo, caixaAdm } from "@/components/admin/ui";
 import Foto from "@/components/Foto";
 
 type Form = { nome: string; slug: string; descricao: string; detalhes: string; preco: string; preco_antigo: string; stock: string; categoria_id: string; imagens: string[]; opcoes: Opcao[]; destaque: boolean; novidade: boolean; ativo: boolean; ordem: string };
-const vazio: Form = { nome: "", slug: "", descricao: "", detalhes: "Prata 925\n", preco: "", preco_antigo: "", stock: "1", categoria_id: "", imagens: [""], opcoes: [], destaque: false, novidade: true, ativo: true, ordem: "0" };
+const vazio: Form = { nome: "", slug: "", descricao: "", detalhes: "Material: Prata 925\n", preco: "", preco_antigo: "", stock: "1", categoria_id: "", imagens: [""], opcoes: [], destaque: false, novidade: true, ativo: true, ordem: "0" };
 
 function Editor() {
   const id = useSearchParams().get("id");
@@ -104,13 +104,14 @@ function Editor() {
           </select>
         </div>
         <div>
-          <label className={lbl} htmlFor="desc">Descrição</label>
-          <textarea id="desc" rows={3} className="campo" value={f.descricao} onChange={(e) => set("descricao", e.target.value)} placeholder="Uma ou duas frases sobre a peça." />
+          <label className={lbl} htmlFor="desc">Descrição (aparece em «Detalhes do produto»)</label>
+          <textarea id="desc" rows={6} className="campo" value={f.descricao} onChange={(e) => set("descricao", e.target.value)} placeholder={"O Brinco Solitário Oval apresenta uma única pedra de zircónia branca em formato oval…\n\nO tamanho da pedra cria um ponto de destaque…"} />
+          <p className={ajuda}>Um ou dois parágrafos sobre a peça. Para separar parágrafos, deixe uma linha em branco.</p>
         </div>
         <div>
-          <label className={lbl} htmlFor="det">Detalhes</label>
-          <textarea id="det" rows={4} className="campo" value={f.detalhes} onChange={(e) => set("detalhes", e.target.value)} placeholder={"Prata 925\nComprimento: 45 cm\nFecho de mosquetão"} />
-          <p className={ajuda}>Um detalhe por linha: material, medidas, peso, fecho.</p>
+          <label className={lbl} htmlFor="det">Características</label>
+          <textarea id="det" rows={8} className="campo" value={f.detalhes} onChange={(e) => set("detalhes", e.target.value)} placeholder={"Material: Prata 925\nPedra: Zircónia branca\nFormato da pedra: Oval\nDimensões: Aproximadamente 8 × 6 mm\nDesign: …\nCompatibilidade com a pele: Sem níquel\nEmbalagem: Bolsa de joalharia personalizada Carvieal"} />
+          <p className={ajuda}>Uma característica por linha, no formato «Nome: valor» (ex.: Material: Prata 925). O nome aparece destacado na loja.</p>
         </div>
       </section>
 

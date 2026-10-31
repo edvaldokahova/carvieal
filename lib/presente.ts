@@ -9,11 +9,11 @@ export const ESTOJO_JOIAS = "estojo-joias"; // para brincos, colares e pulseiras
 export const SLUGS_ESTOJO = [ESTOJO_ANEL, ESTOJO_JOIAS];
 
 /** Dados mínimos de um estojo que os componentes do navegador precisam. */
-export type EstojoInfo = { id: string; slug: string; nome: string; preco: number; imagem: string; stock: number } | null;
+export type EstojoInfo = { id: string; slug: string; nome: string; preco: number; imagem: string; stock: number; descricao: string; detalhes: string } | null;
 export type Estojos = { anel: EstojoInfo; joias: EstojoInfo };
 
 function info(p: Produto | null, img: string): EstojoInfo {
-  return p && p.stock > 0 ? { id: p.id, slug: p.slug, nome: p.nome, preco: p.preco, imagem: p.imagens[0] || img, stock: p.stock } : null;
+  return p && p.stock > 0 ? { id: p.id, slug: p.slug, nome: p.nome, preco: p.preco, imagem: p.imagens[0] || img, stock: p.stock, descricao: p.descricao, detalhes: p.detalhes } : null;
 }
 
 export async function obterEstojos(): Promise<Estojos> {
