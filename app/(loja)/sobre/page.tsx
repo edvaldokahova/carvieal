@@ -5,7 +5,7 @@ import { marca } from "@/lib/marca";
 
 export const metadata: Metadata = {
   title: "Sobre nós",
-  description: "A Carvieal é uma marca de acessórios para mulheres que encontram beleza na simplicidade. Joalharia em prata 925 e moissanite.",
+  description: "A Carvieal é uma marca de acessórios para mulheres que encontram beleza na simplicidade. Joalharia em prata 925.",
   alternates: { canonical: "/sobre" },
 };
 
@@ -24,7 +24,7 @@ const SECCOES: { titulo: string; destaque?: string; textos: string[] }[] = [
   {
     titulo: "A nossa seleção",
     textos: [
-      "A nossa coleção dá destaque à joalharia em prata 925 e à moissanite, materiais escolhidos pela sua beleza e características.",
+      "A nossa coleção dá destaque à joalharia em prata 925, um material escolhido pela sua beleza e características.",
       "Cada peça é selecionada com atenção ao design, aos acabamentos e aos detalhes, procurando equilibrar estética, versatilidade e valor.",
       "Queremos tornar a elegância mais acessível, sem comprometer a experiência que acompanha cada escolha.",
     ],

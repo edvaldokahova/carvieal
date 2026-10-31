@@ -21,4 +21,7 @@ body { @apply bg-white text-tinta font-sans antialiased; font-weight: 400; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+  /* Galeria a deslizar: parada, mas pode arrastar-se com o dedo */
+  .animate-desliza { animation: none !important; }
+  .faixa-desliza { overflow-x: auto; }
 }

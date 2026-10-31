@@ -20,7 +20,13 @@ export default async function Inicio() {
   ]);
   const maisVendidos = destaques.length ? destaques : todos.slice(0, 8);
   const looks = todos.filter((p) => p.imagens.length).slice(0, 8);
-  const galeria = [...new Set(todos.flatMap((p) => p.imagens))].slice(0, 9);
+  // «Carvieal no dia a dia»: fotos das peças + fotos de ambiente, no mínimo 5, a deslizar
+  const ambiente = ["/img/sobre-3.webp", "/img/sobre-2.webp", "/img/sobre-4.webp", "/img/sobre-1.webp", "/img/hero.webp"];
+  const dasPecas = [...new Set(todos.flatMap((p) => p.imagens))].slice(0, 8).map((src) => {
+    const p = todos.find((x) => x.imagens.includes(src))!;
+    return { src, href: `/produto/${p.slug}`, alt: p.nome };
+  });
+  const galeria = [...dasPecas, ...ambiente.map((src) => ({ src, href: "/loja", alt: "" }))].slice(0, Math.max(5, Math.min(10, dasPecas.length + 2)));
 
   return (
     <>
@@ -82,21 +88,21 @@ export default async function Inicio() {
       )}
 
       {/* Galeria estilo Instagram */}
-      {galeria.length >= 3 && (
+      {galeria.length >= 5 && (
         <section className="pb-4">
           <div className="caixa mb-6 flex items-end justify-between">
             <h2 className="text-[15px] font-medium uppercase tracking-[.14em] text-tinta sm:text-[18px]">Carvieal no dia a dia</h2>
             {c.instagram && <a href={c.instagram} target="_blank" rel="noopener noreferrer" className="text-[11px] font-medium uppercase tracking-[.14em] text-tinta/60 hover:text-tinta sm:text-[12px]">Instagram</a>}
           </div>
-          <div className="grid grid-cols-3 gap-[3px]">
-            {galeria.slice(0, galeria.length - (galeria.length % 3)).map((src, i) => {
-              const p = todos.find((x) => x.imagens.includes(src))!;
-              return (
-                <Link key={src} href={`/produto/${p.slug}`} className="group relative block aspect-square overflow-hidden bg-avela-pale">
-                  <Foto src={src} alt={i === 0 ? p.nome : ""} sizes="33vw" className="transition-transform duration-700 group-hover:scale-[1.05]" />
+          <div className="faixa-desliza group overflow-hidden">
+            <div className="flex w-max animate-desliza gap-[3px] group-hover:[animation-play-state:paused]">
+              {[...galeria, ...galeria].map((g, i) => (
+                <Link key={i} href={g.href} aria-hidden={i >= galeria.length} tabIndex={i >= galeria.length ? -1 : undefined}
+                  className="relative block aspect-square w-[42vw] shrink-0 overflow-hidden bg-avela-pale sm:w-[30vw] lg:w-[20vw]">
+                  <Foto src={g.src} alt={i < galeria.length ? g.alt : ""} sizes="(min-width: 1024px) 20vw, (min-width: 640px) 30vw, 42vw" />
                 </Link>
-              );
-            })}
+              ))}
+            </div>
           </div>
         </section>
       )}
