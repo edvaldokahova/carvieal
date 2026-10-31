@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
-import { ESTOJO_SLUG, obterEstojo, estojoInfo } from "@/lib/presente";
+import { SLUGS_ESTOJO, obterEstojos, estojoPara } from "@/lib/presente";
 import { listarCategorias, listarProdutos, obterProduto } from "@/lib/loja";
 import { obterConteudo } from "@/lib/conteudo";
 import { kz } from "@/lib/formato";
@@ -31,9 +31,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function PaginaProduto({ params }: Props) {
   const p = await obterProduto(params.slug);
-  if (params.slug === ESTOJO_SLUG) redirect("/presente");
+  if (SLUGS_ESTOJO.includes(params.slug)) redirect("/presente");
   if (!p) notFound();
-  const [categorias, c, avaliacoes, estojo] = await Promise.all([listarCategorias(), obterConteudo(), avaliacoesPublicas(p.id), obterEstojo()]);
+  const [categorias, c, avaliacoes, estojo] = await Promise.all([listarCategorias(), obterConteudo(), avaliacoesPublicas(p.id), obterEstojos()]);
   const cat = categorias.find((k) => k.id === p.categoria_id);
   const relacionados = (await listarProdutos({ categoriaId: p.categoria_id ?? undefined, limite: 5 })).filter((x) => x.id !== p.id).slice(0, 4);
   const detalhes = p.detalhes.split("\n").map((l) => l.trim()).filter(Boolean);
@@ -77,7 +77,7 @@ export default async function PaginaProduto({ params }: Props) {
               {kz(p.preco)}
             </p>
             {p.descricao && <p className="mt-5 max-w-prose text-[15px] leading-relaxed text-tinta/75">{p.descricao}</p>}
-            <Comprar p={p} estojo={estojoInfo(estojo)} />
+            <Comprar p={p} estojo={estojoPara(cat?.slug, estojo)} />
             <div className="mt-10 divide-y divide-choco/15 border-y border-choco/15">
               {blocos.map(([t, conteudo], i) => (
                 <details key={t} className="group py-4" open={i === 0}>

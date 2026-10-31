@@ -4,12 +4,13 @@ import { Minus, Plus, X } from "lucide-react";
 import { useCarrinho } from "@/lib/carrinho";
 import { kz } from "@/lib/formato";
 import Foto from "./Foto";
-import type { EstojoInfo } from "@/lib/presente";
+import type { Estojos } from "@/lib/presente";
+import SugestaoEstojo from "./SugestaoEstojo";
 
-export default function CarrinhoGaveta({ gratisAcima = 0, estojo = null }: { gratisAcima?: number; estojo?: EstojoInfo }) {
-  const { itens, aberto, fechar, mudarQtd, remover, subtotal, adicionar } = useCarrinho();
+export default function CarrinhoGaveta({ gratisAcima = 0, estojos = { anel: null, joias: null } }: { gratisAcima?: number; estojos?: Estojos }) {
+  const { itens, aberto, fechar, mudarQtd, remover, subtotal } = useCarrinho();
   if (!aberto) return null;
-  const sugerirEstojo = estojo && !itens.some((i) => i.produtoId === estojo.id);
+  const temEstojo = itens.some((i) => i.slug.startsWith("estojo-"));
 
   return (
     <div className="fixed inset-0 z-50" role="dialog" aria-modal="true" aria-label="Carrinho">
@@ -54,17 +55,7 @@ export default function CarrinhoGaveta({ gratisAcima = 0, estojo = null }: { gra
                 </li>
               ))}
             </ul>
-            {sugerirEstojo && (
-              <div className="mx-5 mb-4 flex items-center gap-3 border border-choco/15 bg-white p-3 sm:mx-7">
-                <span className="relative h-14 w-14 shrink-0 overflow-hidden bg-avela-pale"><Foto src={estojo.imagem} alt="" sizes="56px" /></span>
-                <div className="min-w-0 flex-1">
-                  <p className="text-[14px] leading-snug text-tinta">Vai oferecer? Adicionar estojo para presente</p>
-                  <p className="text-[13px] text-tinta/55">+ {kz(estojo.preco)}</p>
-                </div>
-                <button type="button" onClick={() => adicionar({ produtoId: estojo.id, slug: estojo.slug, nome: estojo.nome, imagem: estojo.imagem, preco: estojo.preco, opcoes: {}, stock: estojo.stock })}
-                  className="shrink-0 border border-choco px-3 py-2 text-[12px] font-medium uppercase tracking-[.12em] text-choco hover:bg-choco hover:text-marfim-claro">Adicionar</button>
-              </div>
-            )}
+            {!temEstojo && (estojos.anel || estojos.joias) && <SugestaoEstojo estojos={estojos} temAnel={itens.some((i) => /anel|anéis|aneis/i.test(i.nome + i.slug))} />}
             <div className="border-t border-choco/10 px-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] pt-5 sm:px-7">
               <div className="flex items-baseline justify-between">
                 <span className="text-[15px]">Subtotal</span>
