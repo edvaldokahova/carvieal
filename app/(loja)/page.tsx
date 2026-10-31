@@ -31,7 +31,7 @@ export default async function Inicio() {
         <div className="absolute inset-0 grid place-items-center px-6 text-center">
           <div className="animate-sobe">
             <h1 className="mx-auto max-w-[14ch] text-[38px] font-medium uppercase leading-[1.08] tracking-[.06em] text-white [text-shadow:0_2px_24px_rgba(0,0,0,.25)] sm:max-w-[18ch] sm:text-[60px] lg:text-[72px]">{c.heroTitulo}</h1>
-            <Link href="/loja" className="mt-7 inline-block border-b border-white/80 pb-1 text-[13px] font-medium uppercase tracking-[.2em] text-white hover:border-white sm:text-[14px]">Comprar agora</Link>
+            <Link href="/loja" className="mt-7 inline-block border-b border-white/80 pb-1 text-[13px] font-medium uppercase tracking-[.2em] text-white hover:border-white sm:text-[14px]">Descobrir a coleção</Link>
           </div>
         </div>
       </section>
@@ -52,7 +52,7 @@ export default async function Inicio() {
       <section className="grid grid-cols-2 gap-[3px] bg-white pt-[3px]">
         {[
           { href: "/loja?novidades=1", nome: "Novidades", img: novidades[0]?.imagens[0] || "/img/colares.webp" },
-          { href: "/loja?destaque=1", nome: "Mais vendidos", img: "/img/embalagem.webp" },
+          { href: "/loja?destaque=1", nome: "Os favoritos Carvieal", img: "/img/embalagem.webp" },
         ].map((t) => (
           <Link key={t.href} href={t.href} className="group relative block aspect-[3/4] overflow-hidden bg-avela-pale sm:aspect-[4/5]">
             <Foto src={t.img} alt={t.nome} sizes="50vw" className="transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]" />
@@ -61,11 +61,11 @@ export default async function Inicio() {
         ))}
       </section>
 
-      {/* Mais vendidos */}
+      {/* Os favoritos Carvieal */}
       {maisVendidos.length > 0 && (
         <section className="caixa py-12 sm:py-20">
           <div className="mb-6 flex items-end justify-between sm:mb-8">
-            <h2 className="text-[15px] font-medium uppercase tracking-[.14em] text-tinta sm:text-[18px]">Mais vendidos</h2>
+            <h2 className="text-[15px] font-medium uppercase tracking-[.14em] text-tinta sm:text-[18px]">Os favoritos Carvieal</h2>
             <Link href="/loja" className="text-[11px] font-medium uppercase tracking-[.14em] text-tinta/60 hover:text-tinta sm:text-[12px]">Ver tudo</Link>
           </div>
           <div className="grid grid-cols-2 gap-x-[3px] gap-y-10 sm:gap-x-4 lg:grid-cols-4">

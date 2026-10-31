@@ -11,7 +11,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   const cats = await listarCategorias();
   const k = cats.find((c) => c.slug === searchParams.categoria);
   if (searchParams.novidades) return { title: "Novidades", description: "As peças mais recentes da Carvieal, em prata 925." };
-  if (searchParams.destaque) return { title: "Mais vendidos", description: "As joias Carvieal preferidas das nossas clientes." };
+  if (searchParams.destaque) return { title: "Os favoritos Carvieal", description: "As joias Carvieal preferidas das nossas clientes." };
   return { title: k ? `${k.nome} em prata 925` : "Loja", description: k?.descricao || "Todas as joias Carvieal em prata 925." };
 }
 
@@ -20,7 +20,7 @@ export default async function Loja({ searchParams }: Props) {
   const atual = categorias.find((c) => c.slug === searchParams.categoria);
   const busca = (searchParams.q || "").slice(0, 60);
   let produtos = await listarProdutos({ categoriaId: atual?.id, busca: busca || undefined, novidade: !!searchParams.novidades, destaque: !!searchParams.destaque });
-  const titulo = busca ? `Resultados para «${busca}»` : searchParams.novidades ? "Novidades" : searchParams.destaque ? "Mais vendidos" : atual ? atual.nome : "Descobre a coleção";
+  const titulo = busca ? `Resultados para «${busca}»` : searchParams.novidades ? "Novidades" : searchParams.destaque ? "Os favoritos Carvieal" : atual ? atual.nome : "Descobre a coleção";
   const ordem = searchParams.ordem;
   if (ordem === "preco-asc") produtos = [...produtos].sort((a, b) => a.preco - b.preco);
   if (ordem === "preco-desc") produtos = [...produtos].sort((a, b) => b.preco - a.preco);

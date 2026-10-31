@@ -27,7 +27,7 @@ export default function Cabecalho({ categorias, aviso }: { categorias: { slug: s
   const links = [
     { href: "/loja?novidades=1", nome: "Novidades" },
     ...categorias.map((c) => ({ href: `/loja?categoria=${c.slug}`, nome: c.nome })),
-    { href: "/loja?destaque=1", nome: "Mais vendidos" },
+    { href: "/loja?destaque=1", nome: "Os favoritos Carvieal" },
     { href: "/presente", nome: "Embalagem Especial para Oferecer" },
   ];
   const icone = "grid h-11 w-11 place-items-center text-tinta";
