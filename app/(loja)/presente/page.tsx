@@ -8,7 +8,7 @@ import { kz } from "@/lib/formato";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Embalagem Especial para Presente",
+  title: "Embalagem Especial para Oferecer",
   description: "Estojos Carvieal para oferecer a tua peça em prata 925: um para anéis e outro para brincos, colares e pulseiras.",
   alternates: { canonical: "/presente" },
 };
@@ -22,26 +22,26 @@ export default async function Presente() {
   return (
     <div className="pb-24">
       <section className="caixa grid gap-10 pt-8 sm:pt-14 md:grid-cols-2 md:items-center md:gap-16">
-        <div className="relative aspect-[4/3] overflow-hidden bg-avela-pale">
+        <div className="relative mx-auto aspect-[4/3] w-[88%] max-w-[480px] overflow-hidden bg-avela-pale md:w-full">
           <Foto src="/img/estojo.webp" alt="Estojos Carvieal para presente" sizes="(min-width: 768px) 50vw, 100vw" priority />
         </div>
         <div className="max-w-md">
-          <h1 className="titulo text-[36px] sm:text-[48px]">Embalagem Especial para Presente</h1>
+          <h1 className="titulo text-[36px] sm:text-[48px]">Embalagem Especial para Oferecer</h1>
           <div className="mt-6 space-y-4 text-[15px] leading-relaxed text-tinta/75">
-            <p>Para os momentos em que a peça é para alguém especial, podes juntar à encomenda um estojo em camurça, pensado para oferecer.</p>
-            <p>É uma opção facultativa: todas as encomendas continuam a ser enviadas na embalagem normal da Carvieal.</p>
-            <p>Podes escolher o estojo na página de cada peça, antes de a adicionares ao carrinho, ou diretamente no carrinho.</p>
+            <p>Para tornar o momento de oferecer ainda mais especial, podes adicionar à tua encomenda um estojo Carvieal, cuidadosamente selecionado para apresentar a tua joia.</p>
+            <p>A embalagem especial é opcional. Todas as encomendas incluem a embalagem habitual da Carvieal.</p>
+            <p>Podes adicionar o estojo na página de cada peça ou diretamente no carrinho.</p>
           </div>
         </div>
       </section>
 
-      <section className="caixa mt-16 grid gap-10 sm:grid-cols-2 sm:gap-6 lg:max-w-4xl">
+      <section className="caixa mt-16 grid max-w-3xl gap-12 sm:grid-cols-2 sm:gap-8">
         {modelos.map((m) => (
-          <div key={m.titulo}>
+          <div key={m.titulo} className="mx-auto w-full max-w-[300px] sm:max-w-none">
             <div className="relative aspect-square overflow-hidden bg-avela-pale">
               <Foto src={m.e?.imagem || m.img} alt={m.titulo} sizes="(min-width: 640px) 40vw, 100vw" />
             </div>
-            <h2 className="mt-5 text-[15px] font-medium uppercase tracking-[.14em] text-tinta">{m.titulo}</h2>
+            <h2 className="mt-5 text-[13px] font-medium uppercase tracking-[.08em] text-tinta">{m.titulo}</h2>
             <p className="mt-1 text-[14px] text-tinta/60">{m.texto}</p>
             {m.e ? (
               <>

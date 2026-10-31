@@ -7,7 +7,7 @@ export default function BotaoEstojo({ estojo }: { estojo: NonNullable<EstojoInfo
   return (
     <button type="button" onClick={() => adicionar({ produtoId: estojo.id, slug: estojo.slug, nome: estojo.nome, imagem: estojo.imagem, preco: estojo.preco, opcoes: {}, stock: estojo.stock })}
       className="btn-choco mt-4 w-full uppercase tracking-[.14em] text-[13px]">
-      Adicionar estojo ao carrinho
+      Adicionar ao carrinho
     </button>
   );
 }
