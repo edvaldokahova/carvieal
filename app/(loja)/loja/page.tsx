@@ -20,7 +20,7 @@ export default async function Loja({ searchParams }: Props) {
   const atual = categorias.find((c) => c.slug === searchParams.categoria);
   const busca = (searchParams.q || "").slice(0, 60);
   let produtos = await listarProdutos({ categoriaId: atual?.id, busca: busca || undefined, novidade: !!searchParams.novidades, destaque: !!searchParams.destaque });
-  const titulo = busca ? `Resultados para «${busca}»` : searchParams.novidades ? "Novidades" : searchParams.destaque ? "Mais vendidos" : atual ? atual.nome : "Todas as joias";
+  const titulo = busca ? `Resultados para «${busca}»` : searchParams.novidades ? "Novidades" : searchParams.destaque ? "Mais vendidos" : atual ? atual.nome : "Descobre a coleção";
   const ordem = searchParams.ordem;
   if (ordem === "preco-asc") produtos = [...produtos].sort((a, b) => a.preco - b.preco);
   if (ordem === "preco-desc") produtos = [...produtos].sort((a, b) => b.preco - a.preco);
@@ -66,7 +66,7 @@ export default async function Loja({ searchParams }: Props) {
       {produtos.length === 0 ? (
         <div className="py-24 text-center">
           <p className="font-display text-2xl text-choco">{busca ? "Não encontrámos peças com esse nome." : "Ainda não há peças aqui."}</p>
-          <Link href="/loja" className="btn-linha mt-8">Ver todas as joias</Link>
+          <Link href="/loja" className="btn-linha mt-8">Descobre a coleção</Link>
         </div>
       ) : (
         <div className="mt-6 grid grid-cols-2 gap-x-[3px] gap-y-10 sm:gap-x-4 lg:grid-cols-4">

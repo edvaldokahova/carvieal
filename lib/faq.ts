@@ -3,7 +3,7 @@ export const FAQ: { tema: string; perguntas: { p: string; r: string }[] }[] = [
   {
     tema: "Materiais",
     perguntas: [
-      { p: "De que materiais são feitas as joias?", r: "A nossa seleção inclui joias em prata 925 e acessórios em aço inoxidável. A composição e o acabamento de cada artigo estão indicados na respetiva descrição do produto." },
+      { p: "De que materiais são feitas as joias?", r: "A nossa seleção inclui peças em prata 925. A composição e o acabamento de cada artigo estão indicados na respetiva descrição do produto." },
       { p: "A prata 925 escurece?", r: "Sim. Com o tempo, a prata 925 pode escurecer naturalmente devido à exposição ao ar, à humidade e a determinadas substâncias. Este processo é normal e, geralmente, reversível com uma limpeza adequada." },
       { p: "As peças provocam alergias?", r: "A reação varia de pessoa para pessoa e depende da composição de cada peça e da sensibilidade individual. Se tens pele sensível ou alergia conhecida a determinados metais, recomendamos que consultes a descrição do artigo e nos contactes antes de realizar a encomenda." },
     ],
@@ -28,7 +28,7 @@ export const FAQ: { tema: string; perguntas: { p: string; r: string }[] }[] = [
     perguntas: [
       { p: "Onde entregam?", r: "Realizamos entregas ao domicílio em Luanda através do nosso serviço de motoboy. Para outras províncias de Angola, organizamos o envio através de transportadoras, mediante confirmação das condições de entrega." },
       { p: "Quanto tempo demora a entrega?", r: "Em Luanda, o prazo habitual de entrega é de 24 a 48 horas úteis após a confirmação da encomenda.\n\nPara encomendas confirmadas até às 14h, poderá estar disponível uma modalidade de entrega expressa no mesmo dia, sujeita à localização, à disponibilidade do serviço e à confirmação prévia.\n\nPara outras províncias, o prazo depende da transportadora e do destino e será comunicado antes do envio." },
-      { p: "Quanto custa a entrega?", r: "A taxa de entrega depende da localização e da modalidade escolhida. O valor será apresentado antes da conclusão da encomenda ou confirmado através do WhatsApp." },
+      { p: "Quanto custa a entrega?", r: "A taxa de entrega depende da localização e da modalidade escolhida. O valor será apresentado antes da conclusão da encomenda ou confirmado através do WhatsApp.\n\nA entrega normal em Luanda é gratuita em compras iguais ou superiores a 150.000 Kz. A entrega expressa está sujeita à respetiva taxa e, para outras províncias, os custos e as condições são combinados contigo." },
       { p: "Como posso acompanhar a minha encomenda?", r: "Poderás receber atualizações através do WhatsApp e consultar o estado do pedido na página «Acompanhar encomenda». Para isso, utiliza o código da encomenda e o número de telefone utilizado na compra." },
     ],
   },

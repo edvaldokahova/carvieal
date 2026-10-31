@@ -37,7 +37,9 @@ export default function Termos() {
       <p>Queremos que recebas as tuas peças {marca.nome} com a mesma atenção ao detalhe com que foram preparadas.</p>
       <ul>
         <li><B>Luanda:</B> realizamos entregas ao domicílio através do nosso serviço de motoboy. Os prazos e os custos são apresentados durante a finalização da encomenda.</li>
-        <li><B>Outras províncias:</B> o envio é organizado através de uma transportadora, com condições e custos previamente acordados pelo WhatsApp.</li>
+        <li><B>Entrega gratuita:</B> a entrega normal em Luanda é gratuita em compras iguais ou superiores a 150.000 Kz.</li>
+        <li><B>Entrega expressa:</B> sujeita à respetiva taxa, independentemente do valor da compra.</li>
+        <li><B>Outras províncias:</B> o envio é organizado através de uma transportadora, com custos e condições a combinar com a cliente pelo WhatsApp.</li>
         <li><B>Acompanhamento:</B> poderás consultar o estado da tua encomenda através da funcionalidade <Link href="/acompanhar" className="link text-choco">«Acompanhar encomenda»</Link>.</li>
         <li><B>Receção da encomenda:</B> certifica-te de que os dados de entrega estão corretos e de que existe alguém disponível para receber o pedido.</li>
       </ul>

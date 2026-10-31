@@ -74,7 +74,7 @@ export default function Finalizar({ entregas, gratisAcima = 0 }: { entregas: Ent
     return (
       <div className="caixa py-28 text-center">
         <h1 className="titulo text-[36px]">O teu carrinho está vazio.</h1>
-        <Link href="/loja" className="btn-choco mt-8">Ver a coleção</Link>
+        <Link href="/loja" className="btn-choco mt-8">Descobrir a coleção</Link>
       </div>
     );
   }

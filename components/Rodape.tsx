@@ -18,7 +18,7 @@ export default function Rodape({ c, categorias }: { c: Conteudo; categorias: { s
     <footer className="border-t border-tinta/10 bg-white text-tinta">
       <div className="caixa py-14 sm:py-20">
         <div className="max-w-xl">
-          <p className={titulo}>Junte-se à lista</p>
+          <p className={titulo}>Junta-te à lista</p>
           <p className="mb-6 text-[12px] uppercase leading-relaxed tracking-[.1em] text-tinta/65 sm:text-[13px]">
             Inscreve-te e sê a primeira a saber das novidades, peças exclusivas e promoções.
           </p>
@@ -41,12 +41,12 @@ export default function Rodape({ c, categorias }: { c: Conteudo; categorias: { s
             <Link href="/termos" className={link}>Termos e condições</Link>
             <Link href="/privacidade" className={link}>Privacidade</Link>
           </nav>
-          <nav aria-label="Colecção">
-            <p className={titulo}>Colecção</p>
+          <nav aria-label="Coleção">
+            <p className={titulo}>Coleção</p>
             {categorias.map((k) => <Link key={k.slug} href={`/loja?categoria=${k.slug}`} className={link}>{k.nome}</Link>)}
           </nav>
           <div>
-            <p className={titulo}>Segue-nos</p>
+            <p className={titulo}>Acompanha a Carvieal</p>
             {redes.map((r) => <a key={r.nome} href={r.href} target="_blank" rel="noopener noreferrer" className={link}>{r.nome}</a>)}
             <a href={waLink(marca.whatsapp, "Olá, Carvieal!")} target="_blank" rel="noopener noreferrer" className={link}>WhatsApp</a>
             {c.email && <a href={`mailto:${c.email}`} className={`${link} normal-case tracking-normal`}>{c.email}</a>}

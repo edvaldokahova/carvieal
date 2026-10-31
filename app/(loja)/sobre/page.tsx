@@ -5,7 +5,7 @@ import { marca } from "@/lib/marca";
 
 export const metadata: Metadata = {
   title: "Sobre nós",
-  description: "A Carvieal é uma marca de acessórios para mulheres que encontram beleza na simplicidade. Joias em prata 925 e acessórios em aço inoxidável.",
+  description: "A Carvieal é uma marca de acessórios para mulheres que encontram beleza na simplicidade. Joias em prata 925.",
   alternates: { canonical: "/sobre" },
 };
 
@@ -26,7 +26,7 @@ const SECCOES: { titulo: string; textos: string[] }[] = [
     titulo: "A nossa seleção",
     textos: [
       "Cada peça Carvieal é escolhida tendo em conta o design, a versatilidade e a forma como se integra no estilo da mulher contemporânea.",
-      "A nossa seleção inclui joias em prata 925 e acessórios em aço inoxidável, materiais que oferecem diferentes possibilidades de utilização, acabamento e estilo.",
+      "A nossa seleção inclui joias em prata 925, um material que oferece diferentes possibilidades de utilização, acabamento e estilo.",
       "Procuramos reunir peças que conciliem estética, funcionalidade e acessibilidade, permitindo-te construir uma coleção pessoal de acessórios que fazem sentido para ti.",
       "Porque acreditamos que o verdadeiro valor de uma peça está também na forma como a usas, combinas e tornas tua.",
     ],
@@ -56,8 +56,7 @@ export default function Sobre() {
   return (
     <div className="pb-20 sm:pb-28">
       <section className="caixa max-w-4xl pb-14 pt-12 text-center sm:pb-20 sm:pt-20">
-        <p className={rotulo}>About Carvieal</p>
-        <h1 className="titulo mt-5 text-[38px] sm:text-[64px]">A elegância está nos detalhes.</h1>
+        <h1 className="titulo text-[38px] sm:text-[64px]">A elegância está nos detalhes.</h1>
         <div className="mx-auto mt-8 max-w-2xl space-y-5 text-[16px] leading-relaxed text-tinta/75 sm:text-[17px]">
           <p>A Carvieal é uma marca de acessórios criada para mulheres que encontram beleza na simplicidade e acreditam que a elegância está nos pequenos detalhes.</p>
           <p>A nossa visão assenta numa ideia simples: os acessórios não precisam de ser extravagantes para fazer a diferença. Uma peça bem escolhida pode transformar um visual, expressar personalidade e acompanhar-te em diferentes momentos da vida.</p>
@@ -85,7 +84,7 @@ export default function Sobre() {
       <section className="caixa pt-20 text-center sm:pt-28">
         <p className="font-display text-[34px] tracking-[.18em] text-choco sm:text-[44px]">CARVIEAL</p>
         <p className="mt-3 font-display text-[18px] italic text-tinta/70 sm:text-[20px]">{marca.slogan}</p>
-        <Link href="/loja" className="btn-choco mt-10 uppercase tracking-[.14em] text-[13px]">Ver a coleção</Link>
+        <Link href="/loja" className="btn-choco mt-10 uppercase tracking-[.14em] text-[13px]">Descobrir a coleção</Link>
       </section>
     </div>
   );

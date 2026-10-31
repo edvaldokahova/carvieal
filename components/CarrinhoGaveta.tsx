@@ -22,7 +22,7 @@ export default function CarrinhoGaveta({ gratisAcima = 0 }: { gratisAcima?: numb
           <div className="flex flex-1 flex-col items-center justify-center px-8 text-center">
             <p className="font-display text-2xl text-choco">O teu carrinho está vazio.</p>
             <p className="mt-2 text-[14px] text-tinta/60">Escolhe uma peça e ela aparece aqui.</p>
-            <Link href="/loja" onClick={fechar} className="btn-choco mt-8">Ver a coleção</Link>
+            <Link href="/loja" onClick={fechar} className="btn-choco mt-8">Descobrir a coleção</Link>
           </div>
         ) : (
           <>
