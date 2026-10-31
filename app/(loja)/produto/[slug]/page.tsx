@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+import { ESTOJO_SLUG, obterEstojo, estojoInfo } from "@/lib/presente";
 import { listarCategorias, listarProdutos, obterProduto } from "@/lib/loja";
 import { obterConteudo } from "@/lib/conteudo";
 import { kz } from "@/lib/formato";
@@ -30,8 +31,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function PaginaProduto({ params }: Props) {
   const p = await obterProduto(params.slug);
+  if (params.slug === ESTOJO_SLUG) redirect("/presente");
   if (!p) notFound();
-  const [categorias, c, avaliacoes] = await Promise.all([listarCategorias(), obterConteudo(), avaliacoesPublicas(p.id)]);
+  const [categorias, c, avaliacoes, estojo] = await Promise.all([listarCategorias(), obterConteudo(), avaliacoesPublicas(p.id), obterEstojo()]);
   const cat = categorias.find((k) => k.id === p.categoria_id);
   const relacionados = (await listarProdutos({ categoriaId: p.categoria_id ?? undefined, limite: 5 })).filter((x) => x.id !== p.id).slice(0, 4);
   const detalhes = p.detalhes.split("\n").map((l) => l.trim()).filter(Boolean);
@@ -68,14 +70,14 @@ export default async function PaginaProduto({ params }: Props) {
             <h1 className="text-[20px] font-medium uppercase leading-snug tracking-[.1em] text-tinta sm:text-[26px]">{p.nome}</h1>
             <a href="#avaliacoes" className="mt-3 inline-flex items-center gap-2 text-tinta">
               <Estrelas nota={p.avaliacao_total ? p.avaliacao_media : 0} tamanho={14} />
-              <span className="text-[11px] uppercase tracking-[.1em] text-tinta/60 underline-offset-4 hover:underline">{p.avaliacao_total ? `${p.avaliacao_total} ${p.avaliacao_total === 1 ? "avaliação" : "avaliações"}` : "Seja a primeira a avaliar"}</span>
+              <span className="text-[11px] uppercase tracking-[.1em] text-tinta/60 underline-offset-4 hover:underline">{p.avaliacao_total ? `${p.avaliacao_total} ${p.avaliacao_total === 1 ? "avaliação" : "avaliações"}` : "Sê a primeira a avaliar"}</span>
             </a>
             <p className="mt-3 text-[18px] tabular-nums text-tinta">
               {p.preco_antigo && p.preco_antigo > p.preco && <span className="mr-3 text-tinta/40 line-through">{kz(p.preco_antigo)}</span>}
               {kz(p.preco)}
             </p>
             {p.descricao && <p className="mt-5 max-w-prose text-[15px] leading-relaxed text-tinta/75">{p.descricao}</p>}
-            <Comprar p={p} />
+            <Comprar p={p} estojo={estojoInfo(estojo)} />
             <div className="mt-10 divide-y divide-choco/15 border-y border-choco/15">
               {blocos.map(([t, conteudo], i) => (
                 <details key={t} className="group py-4" open={i === 0}>

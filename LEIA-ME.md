@@ -8,6 +8,7 @@ Loja: catálogo, carrinho, finalização com escolha de pagamento, rastreio da e
 2. Authentication → Users → *Add user* com o email da Carla (marcar *Auto Confirm*). Depois editar o email em `supabase/002_ligar_gerente.sql` e correr.
 3. **Avaliações e lista de emails:** correr `supabase/004_avaliacoes.sql` (uma vez).
 4. **Entrega grátis automática:** correr `supabase/005_entrega_gratis.sql` (uma vez). O valor mínimo muda-se no painel, em Definições › Formas de entrega.
+5. **Embalagem especial para presente:** correr `supabase/006_estojo_presente.sql` (uma vez). O estojo fica em Produtos no painel («Embalagem especial para presente»): aí mudam-se o preço, a foto e o stock. Não aparece no catálogo; é oferecido na página de cada peça, no carrinho e em /presente. Para deixar de o oferecer, desativar o produto ou pôr o stock a 0.
 4. Opcional: `supabase/003_produtos_exemplo.sql` para ver a loja com 4 peças de exemplo (apagar depois no painel).
 5. **Vercel** → *Add New → Project* → importar `carvieal` → em *Environment Variables* pôr:
    - `NEXT_PUBLIC_SUPABASE_URL` (o mesmo dos outros projectos)

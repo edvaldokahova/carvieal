@@ -15,7 +15,8 @@ export async function listarCategorias(): Promise<Categoria[]> {
 
 export async function listarProdutos(opts: { categoriaId?: string; destaque?: boolean; novidade?: boolean; busca?: string; limite?: number } = {}): Promise<Produto[]> {
   if (!supabaseConfigurado) return [];
-  let q = supabase.from("carvieal_produtos").select("*").eq("ativo", true);
+  // O estojo de presente não aparece no catálogo (ver lib/presente.ts)
+  let q = supabase.from("carvieal_produtos").select("*").eq("ativo", true).neq("slug", "estojo-presente");
   if (opts.categoriaId) q = q.eq("categoria_id", opts.categoriaId);
   if (opts.destaque) q = q.eq("destaque", true);
   if (opts.novidade) q = q.eq("novidade", true);

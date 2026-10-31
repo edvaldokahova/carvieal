@@ -2,15 +2,18 @@
 import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import type { Produto } from "@/lib/tipos";
+import type { EstojoInfo } from "@/lib/presente";
+import OpcaoEstojo from "./OpcaoEstojo";
 import { useCarrinho } from "@/lib/carrinho";
 import { marca } from "@/lib/marca";
 import { waLink } from "@/lib/formato";
 
-export default function Comprar({ p }: { p: Produto }) {
+export default function Comprar({ p, estojo = null }: { p: Produto; estojo?: EstojoInfo }) {
   const { adicionar } = useCarrinho();
   const [esc, setEsc] = useState<Record<string, string>>({});
   const [qtd, setQtd] = useState(1);
   const [aviso, setAviso] = useState("");
+  const [comEstojo, setComEstojo] = useState(false);
   const esgotado = p.stock <= 0;
   const faltam = p.opcoes.filter((o) => o.valores.length && !esc[o.nome]);
 
@@ -21,6 +24,7 @@ export default function Comprar({ p }: { p: Produto }) {
     }
     setAviso("");
     adicionar({ produtoId: p.id, slug: p.slug, nome: p.nome, imagem: p.imagens[0] ?? "", preco: p.preco, opcoes: esc, stock: p.stock }, qtd);
+    if (comEstojo && estojo) adicionar({ produtoId: estojo.id, slug: estojo.slug, nome: estojo.nome, imagem: estojo.imagem, preco: estojo.preco, opcoes: {}, stock: estojo.stock }, qtd);
   };
 
   return (
@@ -56,10 +60,12 @@ export default function Comprar({ p }: { p: Produto }) {
         </div>
       )}
 
+      {!esgotado && estojo && <OpcaoEstojo estojo={estojo} marcado={comEstojo} mudar={setComEstojo} />}
+
       <div>
         {esgotado ? (
           <a href={waLink(marca.whatsapp, `Olá, Carvieal! Gostaria de saber quando volta a ter a peça «${p.nome}».`)} target="_blank" rel="noopener noreferrer" className="btn-linha w-full">
-            Esgotado. Avise-me pelo WhatsApp
+            Esgotado. Avisa-me pelo WhatsApp
           </a>
         ) : (
           <button type="button" onClick={add} className="btn-choco w-full">Adicionar ao carrinho</button>

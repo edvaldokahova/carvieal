@@ -28,6 +28,7 @@ export default function Cabecalho({ categorias, aviso }: { categorias: { slug: s
     { href: "/loja?novidades=1", nome: "Novidades" },
     ...categorias.map((c) => ({ href: `/loja?categoria=${c.slug}`, nome: c.nome })),
     { href: "/loja?destaque=1", nome: "Mais vendidos" },
+    { href: "/presente", nome: "Embalagem Especial para Presente" },
   ];
   const icone = "grid h-11 w-11 place-items-center text-tinta";
 
