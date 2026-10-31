@@ -11,7 +11,7 @@ export const conteudoPadrao: Conteudo = {
   facebook: "",
   email: "",
   entregas: [
-    { nome: "Entrega em Luanda", descricao: "Por motoboy, em 24 a 48 horas úteis", taxa: 2500 },
+    { nome: "Entrega em Luanda", descricao: "Por motoboy, em 24 a 48 horas úteis", taxa: 2500, gratis: true },
     { nome: "Entrega expressa em Luanda", descricao: "No mesmo dia, para encomendas confirmadas até às 14h", taxa: 4000 },
     { nome: "Outras províncias", descricao: "Por transportadora. A taxa é combinada no WhatsApp", taxa: 0 },
   ],

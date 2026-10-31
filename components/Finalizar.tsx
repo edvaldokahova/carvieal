@@ -28,7 +28,8 @@ export default function Finalizar({ entregas, gratisAcima = 0 }: { entregas: Ent
   }, []);
 
   const ent = entregas.find((e) => e.nome === f.modalidade);
-  const gratis = gratisAcima > 0 && subtotal >= gratisAcima;
+  const acimaDoMinimo = gratisAcima > 0 && subtotal >= gratisAcima;
+  const gratis = acimaDoMinimo && !!ent?.gratis;
   const taxa = gratis ? 0 : ent?.taxa ?? 0;
   const set = (k: keyof typeof f, v: string) => { setF((x) => ({ ...x, [k]: v })); setErros((e) => ({ ...e, [k]: "" })); };
 
@@ -117,7 +118,7 @@ export default function Finalizar({ entregas, gratisAcima = 0 }: { entregas: Ent
                         <span className="block text-[15px]">{e.nome}</span>
                         <span className="block text-[13px] text-tinta/60">{e.descricao}</span>
                       </span>
-                      <span className="text-[14px] tabular-nums">{e.taxa > 0 ? (gratis ? <><s className="mr-1.5 text-tinta/40">{kz(e.taxa)}</s>Grátis</> : kz(e.taxa)) : "A combinar"}</span>
+                      <span className="text-[14px] tabular-nums">{e.taxa > 0 ? (acimaDoMinimo && e.gratis ? <><s className="mr-1.5 text-tinta/40">{kz(e.taxa)}</s>Grátis</> : kz(e.taxa)) : "A combinar"}</span>
                     </label>
                   ))}
                 </div>

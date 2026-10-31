@@ -58,8 +58,8 @@ export default function CarrinhoGaveta({ gratisAcima = 0 }: { gratisAcima?: numb
                 <span className="font-display text-2xl text-choco">{kz(subtotal)}</span>
               </div>
               <p className="mt-1 text-[13px] text-tinta/55">
-                {gratisAcima > 0 && subtotal >= gratisAcima ? <span className="text-choco">A tua encomenda tem entrega grátis.</span>
-                  : gratisAcima > 0 ? <>Faltam {kz(gratisAcima - subtotal)} para teres entrega grátis.</>
+                {gratisAcima > 0 && subtotal >= gratisAcima ? <span className="text-choco">A tua encomenda tem entrega normal grátis em Luanda.</span>
+                  : gratisAcima > 0 ? <>Faltam {kz(gratisAcima - subtotal)} para teres entrega grátis em Luanda.</>
                   : "A entrega é calculada no passo seguinte."}
               </p>
               <Link href="/finalizar" onClick={fechar} className="btn-choco mt-5 w-full">Finalizar encomenda</Link>

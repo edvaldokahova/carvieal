@@ -52,7 +52,7 @@ export default function Definicoes() {
         <div className="mt-4 max-w-xs">
           <label className={lbl}>Entrega grátis a partir de (Kz)</label>
           <input className="campo" inputMode="numeric" value={c.entregaGratisAcima || ""} onChange={(e) => set("entregaGratisAcima", Number(e.target.value.replace(/\D/g, "")))} placeholder="Ex.: 150000" />
-          <p className="mt-1 text-[12px] text-tinta/50">Compras com este valor ou mais ficam sem taxa de entrega, automaticamente. Deixe vazio para desligar.</p>
+          <p className="mt-1 text-[12px] text-tinta/50">Compras com este valor ou mais ficam sem taxa nas formas de entrega marcadas abaixo, automaticamente. Deixe vazio para desligar.</p>
         </div>
         <div className="mt-4 space-y-3">
           {c.entregas.map((e, i) => (
@@ -60,6 +60,7 @@ export default function Definicoes() {
               <input className="campo !py-2.5 text-[14px]" value={e.nome} onChange={(ev) => set("entregas", c.entregas.map((x, k) => (k === i ? { ...x, nome: ev.target.value } : x)))} placeholder="Nome" />
               <input className="campo !py-2.5 text-[14px]" value={e.descricao} onChange={(ev) => set("entregas", c.entregas.map((x, k) => (k === i ? { ...x, descricao: ev.target.value } : x)))} placeholder="Prazo / detalhe" />
               <input className="campo !py-2.5 text-[14px]" inputMode="numeric" value={e.taxa} onChange={(ev) => set("entregas", c.entregas.map((x, k) => (k === i ? { ...x, taxa: Number(ev.target.value.replace(/\D/g, "")) } : x)))} placeholder="Kz" aria-label="Taxa em Kz" />
+              <label className="flex items-center gap-2 text-[13px] text-tinta/70 sm:col-span-4"><input type="checkbox" className="h-4 w-4 accent-[#4F2C1D]" checked={!!e.gratis} onChange={(ev) => set("entregas", c.entregas.map((x, k) => (k === i ? { ...x, gratis: ev.target.checked } : x)))} /> Fica grátis a partir do valor de entrega grátis</label>
               <button onClick={() => set("entregas", c.entregas.filter((_, k) => k !== i))} aria-label="Remover" className="justify-self-start p-2 text-tinta/45 hover:text-[#9b2c1d]"><X size={16} /></button>
             </div>
           ))}

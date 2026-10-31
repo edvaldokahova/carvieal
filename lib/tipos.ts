@@ -53,6 +53,8 @@ export interface Entrega {
   nome: string;
   descricao: string;
   taxa: number;
+  /** Fica grátis quando a compra atinge o valor de «entrega grátis». */
+  gratis?: boolean;
 }
 
 export interface Conteudo {

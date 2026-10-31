@@ -11,7 +11,7 @@ import WaIcone from "./WaIcone";
 
 const PASSOS = ESTADOS.filter((e) => e.id !== "cancelada");
 
-export default function Encomenda({ codigo, telefone, nova, instrucoes, gratisAcima = 0 }: { codigo: string; telefone: string; nova: boolean; instrucoes: string; gratisAcima?: number }) {
+export default function Encomenda({ codigo, telefone, nova, instrucoes, gratisAcima = 0, modalidadesGratis = [] }: { codigo: string; telefone: string; nova: boolean; instrucoes: string; gratisAcima?: number; modalidadesGratis?: string[] }) {
   const [tel, setTel] = useState(telefone);
   const [dados, setDados] = useState<Rastreio | null>(null);
   const [estado, setEstado] = useState<"a-carregar" | "pedir-telefone" | "ok" | "nao-encontrada">("a-carregar");
@@ -132,7 +132,7 @@ export default function Encomenda({ codigo, telefone, nova, instrucoes, gratisAc
             </ul>
             <dl className="mt-6 space-y-2 border-t border-choco/15 pt-5 text-[14px]">
               <div className="flex justify-between"><dt>Subtotal</dt><dd className="tabular-nums">{kz(dados.subtotal)}</dd></div>
-              <div className="flex justify-between"><dt>{dados.modalidade || "Entrega"}</dt><dd className="tabular-nums">{Number(dados.taxa) > 0 ? kz(dados.taxa) : gratisAcima > 0 && Number(dados.subtotal) >= gratisAcima ? "Grátis" : "A combinar"}</dd></div>
+              <div className="flex justify-between"><dt>{dados.modalidade || "Entrega"}</dt><dd className="tabular-nums">{Number(dados.taxa) > 0 ? kz(dados.taxa) : gratisAcima > 0 && Number(dados.subtotal) >= gratisAcima && modalidadesGratis.includes(dados.modalidade) ? "Grátis" : "A combinar"}</dd></div>
               <div className="flex items-baseline justify-between border-t border-choco/15 pt-3"><dt>Total</dt><dd className="font-display text-[26px] text-choco">{kz(dados.total)}</dd></div>
             </dl>
             <p className="mt-5 text-[13px] leading-relaxed text-tinta/60">Entrega em: {dados.localizacao}, {dados.endereco}</p>

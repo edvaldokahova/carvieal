@@ -1,11 +1,14 @@
 -- 005 · Entrega grátis automática a partir de um valor (ex.: 150.000 Kz)
 -- Correr uma vez no Supabase: SQL Editor > New query > colar tudo > Run.
 
--- 1) Liga a entrega grátis a partir de 150.000 Kz e muda a frase do topo da loja
+-- 1) Liga a entrega grátis a partir de 150.000 Kz (só na «Entrega em Luanda») e muda a frase do topo da loja
 update store_content c
 set data = c.data
   || jsonb_build_object('entregaGratisAcima', 150000)
   || jsonb_build_object('avisoTopo', 'Entregas grátis em compras iguais ou superiores a 150.000 Kz')
+  || jsonb_build_object('entregas', (
+       select coalesce(jsonb_agg(e.value || jsonb_build_object('gratis', e.value->>'nome' = 'Entrega em Luanda') order by e.ordinality), '[]'::jsonb)
+       from jsonb_array_elements(coalesce(c.data->'entregas', '[]'::jsonb)) with ordinality as e))
 from stores s
 where s.id = c.store_id and s.slug = 'carvieal';
 
@@ -87,7 +90,7 @@ begin
   end loop;
 
   -- entrega grátis automática a partir do valor definido no painel
-  if v_gratis > 0 and v_sub >= v_gratis then v_taxa := 0; end if;
+  if v_gratis > 0 and v_sub >= v_gratis and coalesce((v_ent->>'gratis')::boolean, false) then v_taxa := 0; end if;
 
   update carvieal_encomendas set subtotal = v_sub, taxa_entrega = v_taxa, total = v_sub + v_taxa where id = v_id;
 
